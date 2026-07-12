@@ -16,33 +16,30 @@ a { text-decoration: none; color: inherit; }
 
 .v3 { font-family: 'IBM Plex Sans', sans-serif; color: #3A3226; background: #FBF5E9; }
 .v3 h1,.v3 h2,.v3 h3,.v3 h4 { font-family: 'Oswald', sans-serif; }
-.v3 .nav .links, .v3 .nav .cta, .v3 .b1, .v3 .b2, .v3 .pl .plb, .v3 .form3 .fbtn { font-family: 'Sora', sans-serif; }
+.v3 .nav .links, .v3 .b1, .v3 .b2, .v3 .pl .plb, .v3 .form3 .fbtn { font-family: 'Sora', sans-serif; }
 .v3 .sh .kick, .v3 .pill { font-family: 'JetBrains Mono', monospace; }
 .v3 .honey { color: #D48A1E; }
 .v3 .nav { position: sticky; top: 0; left: 0; right: 0; z-index: 90; transition: padding .35s ease; }
 .v3 .nav-inner { max-width: 1240px; margin: 0 auto; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; position: relative; border-radius: 0;
-  transition: margin .38s cubic-bezier(.2,.7,.2,1), padding .38s cubic-bezier(.2,.7,.2,1), background .38s ease, box-shadow .38s ease, border-color .38s ease, backdrop-filter .38s ease; }
+  transition: margin .38s cubic-bezier(.2,.7,.2,1), padding .38s cubic-bezier(.2,.7,.2,1), background .38s ease, box-shadow .38s ease, border-color .38s ease; }
 .v3 .nav-inner > * { position: relative; z-index: 2; }
 .v3 .nav.scrolled .nav-inner { margin: 11px auto; padding: 11px 16px 11px 22px; border-radius: 20px;
-  background: linear-gradient(135deg,rgba(255,251,242,.78),rgba(248,223,166,.48));
-  -webkit-backdrop-filter: blur(22px) saturate(185%); backdrop-filter: blur(22px) saturate(185%);
-  border: 1px solid rgba(255,255,255,.6);
-  box-shadow: 0 10px 34px -10px rgba(74,52,19,.28), inset 0 1px 0 rgba(255,255,255,.75), inset 0 -10px 22px -14px rgba(255,255,255,.5);
+  background:
+    repeating-linear-gradient(95deg, rgba(255,255,255,.3) 0px, rgba(255,255,255,.3) 1px, rgba(30,18,4,.22) 1px, rgba(30,18,4,.22) 2px),
+    linear-gradient(180deg,#8A6B3E 0%,#6B4E28 55%,#4A3413 100%);
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 10px 28px -12px rgba(30,18,4,.5), inset 0 1px 0 rgba(255,255,255,.25), inset 0 -2px 5px rgba(0,0,0,.35);
   overflow: hidden; }
-.v3 .nav .nav-inner::before { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .4s ease;
-  background: radial-gradient(220px 140px at var(--nx,50%) var(--ny,40%), rgba(255,255,255,.6), rgba(255,255,255,.15) 42%, transparent 72%); }
-.v3 .nav.scrolled .nav-inner::before { opacity: 1; }
-.v3 .nav .nav-inner::after { content: ""; position: absolute; top: 0; left: -45%; width: 42%; height: 100%; z-index: 1; pointer-events: none; opacity: 0;
-  background: linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent); transform: skewX(-18deg); }
-.v3 .nav.scrolled .nav-inner::after { opacity: .55; animation: navSheen 7s ease-in-out infinite; }
-@keyframes navSheen { 0%,68% { left: -45%; } 100% { left: 125%; } }
-@media (prefers-reduced-motion: reduce) { .v3 .nav.scrolled .nav-inner::after { animation: none; opacity: 0; } }
+.v3 .nav.scrolled .nav-inner > img { filter: brightness(0) invert(1); }
+.v3 .nav.scrolled .links a { color: #E7D3AC; }
+.v3 .nav.scrolled .links a:hover { color: #fff; }
+.v3 .nav.scrolled .burger { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.3); }
+.v3 .nav.scrolled .burger span { background: #E7D3AC; }
 .v3 .nav img { height: 25px; }
 .v3 .nav .links { display: flex; gap: 26px; font-size: 14px; font-weight: 600; color: #6C6150; }
-.v3 .nav-cta { display: flex; align-items: center; gap: 12px; }
-.v3 .nav .cta { display: inline-flex; align-items: center; line-height: 1; font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 8px; background: #E9A62E; color: #3A2A08; box-shadow: 0 10px 22px -10px rgba(233,166,46,.7); }
+.v3 .nav .links a { transition: color .3s ease; }
 /* burger + drawer */
-.v3 .burger { display: none; width: 42px; height: 42px; border: 1.5px solid #EAD9B2; border-radius: 10px; background: #fff; align-items: center; justify-content: center; flex-direction: column; gap: 4px; cursor: pointer; flex: none; }
+.v3 .burger { display: none; width: 42px; height: 42px; border: 1.5px solid #EAD9B2; border-radius: 10px; background: #fff; align-items: center; justify-content: center; flex-direction: column; gap: 4px; cursor: pointer; flex: none; transition: background .3s ease, border-color .3s ease; }
 .v3 .burger span { width: 18px; height: 2px; background: #4A3413; border-radius: 2px; transition: .25s; }
 body.nav-open .burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
 body.nav-open .burger span:nth-child(2) { opacity: 0; }
@@ -55,7 +52,6 @@ body.nav-open .drawer .scrim { opacity: 1; }
 body.nav-open .drawer .sheet { transform: translateX(0); }
 .v3 .drawer .sheet a { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 600; color: #4A3413; padding: 14px 4px; border-bottom: 1px solid #EAD9B2; }
 .v3 .drawer .sheet a:last-of-type { border-bottom: none; }
-.v3 .drawer .sheet .cta { margin-top: 18px; text-align: center; justify-content: center; }
 /* hero */
 .v3 .hero { max-width: 1240px; margin: 0 auto; padding: 40px 32px 70px; }
 .v3 .hero-card { position: relative; border-radius: 14px; overflow: hidden; background: linear-gradient(160deg,#FDEFCE,#F8DFA6); padding: 62px 60px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 30px; align-items: center; }
@@ -139,10 +135,7 @@ body.nav-open .drawer .sheet { transform: translateX(0); }
     <div class="nav-inner">
       <img src="img/eddy-ink.svg" alt="EDDY Group" />
       <div class="links"><a href="#reason">Рішення</a><a href="#reason">Чому це важливо</a><a href="#plans">Комплектації</a><a href="#contact">Контакти</a></div>
-      <div class="nav-cta">
-        <a class="cta" href="#contact">Отримати консультацію</a>
-        <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
-      </div>
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
     </div>
   </nav>
   <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Меню" aria-hidden="true">
@@ -152,7 +145,6 @@ body.nav-open .drawer .sheet { transform: translateX(0); }
       <a href="#reason" data-close>Чому це важливо</a>
       <a href="#plans" data-close>Комплектації</a>
       <a href="#contact" data-close>Контакти</a>
-      <a class="cta" href="#contact" data-close>Отримати консультацію</a>
     </div>
   </div>
   <div class="hero">
@@ -263,14 +255,6 @@ body.nav-open .drawer .sheet { transform: translateX(0); }
   function setScrolled(v){ if(nav) nav.classList.toggle('scrolled',v); }
   function onScroll(){ setScrolled((window.scrollY||0)>24); }
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
-  if(nav && !window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-    var navInner=nav.querySelector('.nav-inner');
-    nav.addEventListener('pointermove',function(e){
-      var r=(navInner||nav).getBoundingClientRect();
-      (navInner||nav).style.setProperty('--nx',(e.clientX-r.left)+'px');
-      (navInner||nav).style.setProperty('--ny',(e.clientY-r.top)+'px');
-    },{passive:true});
-  }
 })();
 (function(){
   var body=document.body, burger=document.getElementById('burger'), drawer=document.getElementById('drawer');
