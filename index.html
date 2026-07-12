@@ -19,10 +19,26 @@ a { text-decoration: none; color: inherit; }
 .v3 .nav .links, .v3 .nav .cta, .v3 .b1, .v3 .b2, .v3 .pl .plb, .v3 .form3 .fbtn { font-family: 'Sora', sans-serif; }
 .v3 .sh .kick, .v3 .pill { font-family: 'JetBrains Mono', monospace; }
 .v3 .honey { color: #D48A1E; }
-.v3 .nav { display: flex; align-items: center; justify-content: space-between; padding: 26px 60px; }
+.v3 .nav { position: sticky; top: 0; z-index: 90; display: flex; align-items: center; justify-content: space-between; padding: 20px 60px; background: rgba(251,245,233,.92); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(74,52,19,.08); }
 .v3 .nav img { height: 25px; }
 .v3 .nav .links { display: flex; gap: 26px; font-size: 14px; font-weight: 600; color: #6C6150; }
+.v3 .nav-cta { display: flex; align-items: center; gap: 14px; }
 .v3 .nav .cta { font-size: 14px; font-weight: 700; padding: 12px 22px; border-radius: 8px; background: #E9A62E; color: #3A2A08; box-shadow: 0 10px 22px -10px rgba(233,166,46,.7); }
+/* burger + drawer */
+.v3 .burger { display: none; width: 42px; height: 42px; border: 1.5px solid #EAD9B2; border-radius: 10px; background: #fff; align-items: center; justify-content: center; flex-direction: column; gap: 4px; cursor: pointer; flex: none; }
+.v3 .burger span { width: 18px; height: 2px; background: #4A3413; border-radius: 2px; transition: .25s; }
+body.nav-open .burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+body.nav-open .burger span:nth-child(2) { opacity: 0; }
+body.nav-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+.v3 .drawer { position: fixed; inset: 0; z-index: 89; pointer-events: none; }
+.v3 .drawer .scrim { position: absolute; inset: 0; background: rgba(40,28,10,.45); opacity: 0; transition: opacity .25s ease; }
+.v3 .drawer .sheet { position: absolute; top: 0; right: 0; bottom: 0; width: min(82vw,340px); background: #FBF5E9; padding: 90px 28px 28px; display: flex; flex-direction: column; gap: 2px; transform: translateX(100%); transition: transform .3s ease; box-shadow: -20px 0 50px -20px rgba(40,28,10,.4); }
+body.nav-open .drawer { pointer-events: auto; }
+body.nav-open .drawer .scrim { opacity: 1; }
+body.nav-open .drawer .sheet { transform: translateX(0); }
+.v3 .drawer .sheet a { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 600; color: #4A3413; padding: 14px 4px; border-bottom: 1px solid #EAD9B2; }
+.v3 .drawer .sheet a:last-of-type { border-bottom: none; }
+.v3 .drawer .sheet .cta { margin-top: 18px; text-align: center; justify-content: center; }
 /* hero */
 .v3 .hero { padding: 40px 60px 70px; }
 .v3 .hero-card { position: relative; border-radius: 14px; overflow: hidden; background: linear-gradient(160deg,#FDEFCE,#F8DFA6); padding: 62px 60px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 30px; align-items: center; }
@@ -75,23 +91,50 @@ a { text-decoration: none; color: inherit; }
 .v3 .form3 label { display: block; font-size: 12.5px; font-weight: 700; color: #7A6A4C; margin-bottom: 6px; }
 .v3 .form3 input { width: 100%; padding: 13px 16px; border: 2px solid #EAD9B2; border-radius: 6px; background: #fff; font-family: inherit; font-size: 14px; margin-bottom: 16px; color: #4A3413; }
 .v3 .form3 .fbtn { width: 100%; padding: 15px; border: none; border-radius: 6px; background: #E9A62E; color: #3A2A08; font-weight: 700; font-size: 15px; cursor: pointer; }
-.v3 .foot { padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #8A7A5C; }
-.v3 .foot img { height: 22px; }
+.v3 .footer { margin-top: 20px; background: #241807; color: #B9A47D; padding: 60px 60px 28px; }
+.v3 .footer-top { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 36px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.v3 .footer .f-brand .logo { height: 24px; filter: brightness(0) invert(1); margin-bottom: 16px; }
+.v3 .footer .f-brand p { font-size: 13.5px; line-height: 1.6; max-width: 300px; color: #9C8B68; margin: 0; }
+.v3 .footer .fcol h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #D48A1E; margin: 0 0 14px; font-weight: 600; }
+.v3 .footer .fcol a, .v3 .footer .fcol p { display: block; font-size: 13.5px; color: #B9A47D; margin: 0 0 10px; transition: color .2s; }
+.v3 .footer .fcol a:hover { color: #fff; }
+.v3 .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding-top: 22px; }
+.v3 .footer-bottom .cp { font-size: 12.5px; color: #8A7856; }
+.v3 .footer-bottom .f-social { display: flex; gap: 14px; }
+.v3 .footer-bottom .f-social a { display: inline-flex; color: #9C8B68; transition: color .2s; }
+.v3 .footer-bottom .f-social a:hover { color: #fff; }
+.v3 .footer-bottom .made-tag { display: inline-flex; align-items: center; gap: 9px; font-size: 12.5px; color: #9C8B68; }
+.v3 .footer-bottom .made-tag .flag { width: 20px; height: 14px; border-radius: 3px; background: linear-gradient(#005BBB 50%, #FFD500 50%); flex: none; }
 @media (max-width: 900px) {
-  .v3 .hero-card, .v3 .why, .v3 .incl .cards, .v3 .plans, .v3 .cta { grid-template-columns: 1fr; }
+  .v3 .hero-card, .v3 .why, .v3 .incl .cards, .v3 .plans, .v3 .cta, .v3 .footer-top { grid-template-columns: 1fr; }
   .v3 .nav .links { display: none; }
-  .v3 .nav, .v3 .hero, .v3 .sec, .v3 .foot { padding-left: 24px; padding-right: 24px; }
+  .v3 .burger { display: flex; }
+  .v3 .nav, .v3 .hero, .v3 .sec, .v3 .footer { padding-left: 24px; padding-right: 24px; }
   .v3 .incl, .v3 .cta { margin-left: 24px; margin-right: 24px; padding: 34px; }
   .v3 .hero h1 { font-size: 38px; }
+  .v3 .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
 </style>
 </head>
 <body>
 <div class="v3">
-  <div class="nav">
+  <nav class="nav" id="nav">
     <img src="img/eddy-ink.svg" alt="EDDY Group" />
     <div class="links"><a href="#reason">Рішення</a><a href="#reason">Чому це важливо</a><a href="#plans">Комплектації</a><a href="#contact">Контакти</a></div>
-    <a class="cta" href="#contact">Отримати консультацію</a>
+    <div class="nav-cta">
+      <a class="cta" href="#contact">Отримати консультацію</a>
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Меню" aria-hidden="true">
+    <div class="scrim" data-close></div>
+    <div class="sheet">
+      <a href="#reason" data-close>Рішення</a>
+      <a href="#reason" data-close>Чому це важливо</a>
+      <a href="#plans" data-close>Комплектації</a>
+      <a href="#contact" data-close>Контакти</a>
+      <a class="cta" href="#contact" data-close>Отримати консультацію</a>
+    </div>
   </div>
   <div class="hero">
     <div class="hero-card">
@@ -166,7 +209,48 @@ a { text-decoration: none; color: inherit; }
       <button class="fbtn">Надіслати заявку</button>
     </div>
   </div>
-  <div class="foot"><img src="img/eddy-ink.svg" alt="EDDY Group" /><div>© 2026 EDDY Group · office@eddygroup.eu · +380 93 270 82 04</div></div>
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="f-brand">
+        <img class="logo" src="img/eddy-ink.svg" alt="EDDY Group" />
+        <p>Резервне живлення «під ключ» для закладів освіти: гібридні інвертори, LiFePO₄ АКБ, монтаж і сервіс по Україні.</p>
+      </div>
+      <div class="fcol">
+        <h4>Навігація</h4>
+        <a href="#reason">Чому це важливо</a>
+        <a href="#plans">Комплектації</a>
+        <a href="#contact">Контакти</a>
+      </div>
+      <div class="fcol">
+        <h4>Контакти</h4>
+        <a href="tel:+380932708204">+380 93 270 82 04</a>
+        <a href="mailto:office@eddygroup.eu">office@eddygroup.eu</a>
+        <p>Київ, вул. Глибочицька, 32</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="cp">© 2026 EDDY Group · Резервне живлення Svitlo</div>
+      <div class="f-social">
+        <a href="https://www.facebook.com/profile.php?id=61576618363606" target="_blank" rel="noreferrer" aria-label="EDDY Group у Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M22 12.06C22 6.48 17.52 2 11.94 2 6.36 2 1.88 6.48 1.88 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.42V9.91c0-2.39 1.42-3.71 3.6-3.71 1.04 0 2.13.19 2.13.19v2.34h-1.2c-1.18 0-1.55.73-1.55 1.48v1.78h2.64l-.42 2.91h-2.22V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg></a>
+        <a href="https://www.youtube.com/@eddy-group" target="_blank" rel="noreferrer" aria-label="EDDY Group на YouTube"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3.02 3.02 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.56a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z"/></svg></a>
+      </div>
+      <div class="made-tag"><span class="flag"></span> Зроблено в Україні</div>
+    </div>
+  </footer>
 </div>
+<script>
+(function(){
+  var body=document.body, burger=document.getElementById('burger'), drawer=document.getElementById('drawer');
+  function setOpen(open){
+    body.classList.toggle('nav-open',open);
+    burger.setAttribute('aria-expanded',open);
+    drawer.setAttribute('aria-hidden',!open);
+  }
+  burger.addEventListener('click',function(){ setOpen(!body.classList.contains('nav-open')); });
+  drawer.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click',function(){ setOpen(false); }); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') setOpen(false); });
+  window.addEventListener('resize',function(){ if(window.innerWidth>900) setOpen(false); });
+})();
+</script>
 </body>
 </html>
