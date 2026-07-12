@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<title>Svitlo · EDDY Group — Резервне живлення для закладів освіти</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+.v3 a:hover { color: #D48A1E; }
+
+.v3 { font-family: 'IBM Plex Sans', sans-serif; color: #3A3226; background: #FBF5E9; }
+.v3 h1,.v3 h2,.v3 h3,.v3 h4 { font-family: 'Oswald', sans-serif; }
+.v3 .nav .links, .v3 .nav .cta, .v3 .b1, .v3 .b2, .v3 .pl .plb, .v3 .form3 .fbtn { font-family: 'Sora', sans-serif; }
+.v3 .sh .kick, .v3 .pill { font-family: 'JetBrains Mono', monospace; }
+.v3 .honey { color: #D48A1E; }
+.v3 .nav { display: flex; align-items: center; justify-content: space-between; padding: 26px 60px; }
+.v3 .nav img { height: 25px; }
+.v3 .nav .links { display: flex; gap: 26px; font-size: 14px; font-weight: 600; color: #6C6150; }
+.v3 .nav .cta { font-size: 14px; font-weight: 700; padding: 12px 22px; border-radius: 8px; background: #E9A62E; color: #3A2A08; box-shadow: 0 10px 22px -10px rgba(233,166,46,.7); }
+/* hero */
+.v3 .hero { padding: 40px 60px 70px; }
+.v3 .hero-card { position: relative; border-radius: 14px; overflow: hidden; background: linear-gradient(160deg,#FDEFCE,#F8DFA6); padding: 62px 60px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 30px; align-items: center; }
+.v3 .pill { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: #A9781F; font-weight: 700; font-size: 13px; padding: 8px 14px; border-radius: 6px; margin-bottom: 22px; box-shadow: 0 8px 20px -12px rgba(160,120,30,.6); }
+.v3 .hero h1 { font-size: 56px; line-height: 1.05; font-weight: 700; color: #4A3413; margin: 0 0 20px; }
+.v3 .hero p { font-size: 17px; line-height: 1.6; color: #6B5A3C; max-width: 460px; margin: 0 0 28px; }
+.v3 .hbtns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 26px; }
+.v3 .b1 { padding: 15px 30px; border-radius: 6px; background: #4A3413; color: #FBF0D6; font-weight: 700; font-size: 15px; }
+.v3 .b2 { padding: 15px 28px; border-radius: 6px; background: #fff; color: #4A3413; font-weight: 700; font-size: 15px; }
+.v3 .mini { display: flex; gap: 22px; }
+.v3 .mini div { font-size: 13px; color: #7A6A4C; font-weight: 600; }
+.v3 .mini b { display: block; font-family: 'Oswald', sans-serif; font-size: 24px; color: #4A3413; }
+.v3 .hero-prod { background: #fff; border-radius: 12px; padding: 22px; display: grid; place-items: center; box-shadow: 0 30px 60px -34px rgba(120,90,30,.5); }
+.v3 .hero-prod img { max-height: 380px; }
+/* sections */
+.v3 .sec { padding: 66px 60px; }
+.v3 .sh { text-align: center; max-width: 640px; margin: 0 auto 46px; }
+.v3 .sh .kick { font-weight: 800; font-size: 13px; letter-spacing: .06em; color: #D48A1E; text-transform: uppercase; margin-bottom: 12px; }
+.v3 .sh h2 { font-size: 38px; font-weight: 700; color: #4A3413; margin: 0 0 12px; }
+.v3 .sh p { font-size: 16px; line-height: 1.6; color: #6B5A3C; margin: 0; }
+/* why cards */
+.v3 .why { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.v3 .wc { background: #fff; border-radius: 10px; padding: 30px; box-shadow: 0 20px 44px -34px rgba(120,90,30,.5); }
+.v3 .wc .em { width: 58px; height: 58px; border-radius: 8px; background: #FBEAC4; display: grid; place-items: center; font-size: 26px; margin-bottom: 18px; }
+.v3 .wc h4 { font-size: 19px; font-weight: 700; color: #4A3413; margin: 0 0 8px; }
+.v3 .wc p { font-size: 14.5px; line-height: 1.55; color: #6B5A3C; margin: 0; }
+/* included soft */
+.v3 .incl { background: #F4E6C9; border-radius: 14px; margin: 0 60px; padding: 60px; }
+.v3 .incl .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.v3 .incl .ic2 { background: #FDFAF2; border-radius: 8px; padding: 24px; display: flex; gap: 16px; align-items: flex-start; }
+.v3 .incl .ic2 .e { font-size: 28px; }
+.v3 .incl .ic2 h4 { font-size: 16px; font-weight: 700; color: #4A3413; margin: 0 0 5px; }
+.v3 .incl .ic2 p { font-size: 13.5px; line-height: 1.5; color: #6B5A3C; margin: 0; }
+/* configs rounded */
+.v3 .plans { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.v3 .pl { background: #fff; border-radius: 12px; padding: 32px; text-align: center; box-shadow: 0 22px 50px -38px rgba(120,90,30,.55); }
+.v3 .pl.feat { background: linear-gradient(165deg,#FCE9BE,#F6D68F); }
+.v3 .pl .pn { font-family: 'Oswald'; font-weight: 700; font-size: 30px; color: #4A3413; }
+.v3 .pl .pc { font-size: 13px; font-weight: 700; color: #C08A1E; margin-bottom: 16px; }
+.v3 .pl .pf { font-size: 14px; color: #6B5A3C; line-height: 1.5; margin-bottom: 18px; min-height: 42px; }
+.v3 .pl ul { list-style: none; padding: 0; margin: 0 0 22px; }
+.v3 .pl li { font-size: 14px; color: #4A3413; padding: 7px 0; font-weight: 600; }
+.v3 .pl .plb { display: block; padding: 14px; border-radius: 6px; font-weight: 700; font-size: 14px; background: #4A3413; color: #FBF0D6; }
+.v3 .pl.feat .plb { background: #E9A62E; color: #3A2A08; }
+/* cta */
+.v3 .cta { margin: 0 60px 60px; background: linear-gradient(150deg,#4A3413,#6B4A18); border-radius: 14px; padding: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; color: #FBF0D6; }
+.v3 .cta h2 { font-family: 'Oswald'; font-size: 34px; font-weight: 700; margin: 10px 0 14px; color: #FDEFCE; }
+.v3 .cta p { font-size: 15.5px; line-height: 1.6; color: #E7CE9E; max-width: 400px; }
+.v3 .form3 { background: #FDFAF2; border-radius: 12px; padding: 30px; }
+.v3 .form3 label { display: block; font-size: 12.5px; font-weight: 700; color: #7A6A4C; margin-bottom: 6px; }
+.v3 .form3 input { width: 100%; padding: 13px 16px; border: 2px solid #EAD9B2; border-radius: 6px; background: #fff; font-family: inherit; font-size: 14px; margin-bottom: 16px; color: #4A3413; }
+.v3 .form3 .fbtn { width: 100%; padding: 15px; border: none; border-radius: 6px; background: #E9A62E; color: #3A2A08; font-weight: 700; font-size: 15px; cursor: pointer; }
+.v3 .foot { padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #8A7A5C; }
+.v3 .foot img { height: 22px; }
+@media (max-width: 900px) {
+  .v3 .hero-card, .v3 .why, .v3 .incl .cards, .v3 .plans, .v3 .cta { grid-template-columns: 1fr; }
+  .v3 .nav .links { display: none; }
+  .v3 .nav, .v3 .hero, .v3 .sec, .v3 .foot { padding-left: 24px; padding-right: 24px; }
+  .v3 .incl, .v3 .cta { margin-left: 24px; margin-right: 24px; padding: 34px; }
+  .v3 .hero h1 { font-size: 38px; }
+}
+</style>
+</head>
+<body>
+<div class="v3">
+  <div class="nav">
+    <img src="img/eddy-ink.svg" alt="EDDY Group" />
+    <div class="links"><a href="#reason">Рішення</a><a href="#reason">Чому це важливо</a><a href="#plans">Комплектації</a><a href="#contact">Контакти</a></div>
+    <a class="cta" href="#contact">Отримати консультацію</a>
+  </div>
+  <div class="hero">
+    <div class="hero-card">
+      <div>
+        <div class="pill">☀ Тепло і світло цілу зиму</div>
+        <h1>Школа, де світло не зникає</h1>
+        <p>Комплексні рішення резервного живлення «під ключ» для шкіл, ліцеїв і садків. Просто, безпечно й готово до зими.</p>
+        <div class="hbtns"><a class="b1" href="#contact">Отримати консультацію</a><a class="b2" href="#plans">Підібрати рішення</a></div>
+        <div class="mini"><div><b>по УА</b>монтаж</div><div><b>офіц.</b>постачальник</div><div><b>гарантія</b>виробника</div></div>
+      </div>
+      <div class="hero-prod"><img src="img/inverter-cut.png" alt="Гібридний трифазний інвертор" /></div>
+    </div>
+  </div>
+  <div class="sec" id="reason">
+    <div class="sh">
+      <div class="kick">Чому це стало необхідністю</div>
+      <h2>Навчання не має залежати від відключень</h2>
+      <p>Сучасний заклад потребує стабільного живлення для безпеки, занять і критичної інфраструктури — навіть під час аварійних чи планових відключень.</p>
+    </div>
+    <div class="why">
+      <div class="wc"><div class="em">🏫</div><h4>Навчальний процес без перерв</h4><p>Уроки тривають за розкладом — незалежно від стану мережі.</p></div>
+      <div class="wc"><div class="em">💻</div><h4>Робота комп'ютерної техніки</h4><p>Панелі, ПК і лабораторії залишаються увімкненими.</p></div>
+      <div class="wc"><div class="em">🌐</div><h4>Інтернет і мережа</h4><p>Зв'язок і мережеве обладнання працюють стабільно.</p></div>
+      <div class="wc"><div class="em">🚨</div><h4>Безпека й оповіщення</h4><p>Системи безпеки та сповіщення завжди активні.</p></div>
+      <div class="wc"><div class="em">🔥</div><h4>Котельні та насоси</h4><p>Тепло в будівлі підтримується без збоїв.</p></div>
+      <div class="wc"><div class="em">☀</div><h4>Готовність до сонця</h4><p>Сонячні панелі можна підключити будь-коли пізніше.</p></div>
+    </div>
+  </div>
+  <div class="incl">
+    <div class="sh"><div class="kick">Рішення «під ключ»</div><h2>Усе необхідне в одному комплекті</h2></div>
+    <div class="cards">
+      <div class="ic2"><span class="e">⚡</span><div><h4>Гібридний інвертор</h4><p>Автоперемикання мережа / АКБ / сонце.</p></div></div>
+      <div class="ic2"><span class="e">🔋</span><div><h4>LiFePO₄ батареї</h4><p>Безпечні, з тривалим ресурсом роботи.</p></div></div>
+      <div class="ic2"><span class="e">⚙</span><div><h4>Захисна автоматика</h4><p>Захист обладнання та електромережі.</p></div></div>
+      <div class="ic2"><span class="e">🛠</span><div><h4>Монтаж</h4><p>Сертифіковані спеціалісти по Україні.</p></div></div>
+      <div class="ic2"><span class="e">📋</span><div><h4>Пусконалагодження</h4><p>Повне тестування перед запуском.</p></div></div>
+      <div class="ic2"><span class="e">👨‍🏫</span><div><h4>Навчання персоналу</h4><p>Інструктаж з експлуатації системи.</p></div></div>
+    </div>
+  </div>
+  <div class="sec" id="plans">
+    <div class="sh"><div class="kick">Комплектації</div><h2>Оберіть рішення під ваш заклад</h2></div>
+    <div class="plans">
+      <div class="pl">
+        <div class="pn">12 / 20</div><div class="pc">кВт інвертор / АКБ</div>
+        <div class="pf">Невеликі школи, садки, адмінприміщення</div>
+        <ul><li>Трифазний інвертор</li><li>LiFePO₄ АКБ</li><li>Масштабування</li></ul>
+        <a class="plb" href="#contact">Дізнатись ціну</a>
+      </div>
+      <div class="pl feat">
+        <div class="pn">20 / 50</div><div class="pc">рекомендовано</div>
+        <div class="pf">Ліцеї, гімназії, середні заклади</div>
+        <ul><li>Більша потужність</li><li>Вища продуктивність</li><li>Сонячні панелі</li></ul>
+        <a class="plb" href="#contact">Дізнатись ціну</a>
+      </div>
+      <div class="pl">
+        <div class="pn">50 / 100</div><div class="pc">кВт інвертор / АКБ</div>
+        <div class="pf">Великі ліцеї, ПТУ, комплекси</div>
+        <ul><li>Макс. потужність</li><li>Масштабованість</li><li>Велике навантаження</li></ul>
+        <a class="plb" href="#contact">Дізнатись ціну</a>
+      </div>
+    </div>
+  </div>
+  <div class="cta" id="contact">
+    <div>
+      <div class="pill" style="background:rgba(255,255,255,.14);color:#FDEFCE;">Підготуймо заклад до зими</div>
+      <h2>Залиште заявку — і ми все порахуємо</h2>
+      <p>Підберемо комплектацію під потужність і навантаження вашого закладу та узгодимо зручний час монтажу.</p>
+    </div>
+    <div class="form3">
+      <label>Назва закладу</label><input placeholder="Гімназія №— / громада" />
+      <label>Телефон</label><input placeholder="+380 —" />
+      <button class="fbtn">Надіслати заявку</button>
+    </div>
+  </div>
+  <div class="foot"><img src="img/eddy-ink.svg" alt="EDDY Group" /><div>© 2026 EDDY Group · office@eddygroup.eu · +380 93 270 82 04</div></div>
+</div>
+</body>
+</html>
