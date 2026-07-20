@@ -234,25 +234,24 @@ footer .fcol a:hover{color:var(--ink);text-decoration:underline;}
 .made .flag{width:20px;height:14px;background:linear-gradient(#005BBB 50%,#FFD500 50%);}
 
 /* flow (dark schematic) */
-.flow{display:grid;grid-template-columns:repeat(4,1fr);border:3px solid var(--bone);}
-.flow .step{position:relative;padding:34px 28px;border-right:3px solid var(--bone);}
-.flow .step:last-child{border-right:none;}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.flow .step{position:relative;padding-top:20px;border-top:3px solid var(--sig-lt);}
 .flow .step .sn{font-family:'JetBrains Mono';font-weight:700;font-size:11px;letter-spacing:.05em;color:var(--sig-lt);margin-bottom:16px;}
 .flow .step h3{font-family:'Oswald';font-weight:700;text-transform:uppercase;font-size:18px;margin:0 0 8px;}
 .flow .step p{font-size:13.5px;line-height:1.5;color:var(--bone-dim);margin:0;}
-.flow .step .ar{position:absolute;top:50%;right:-14px;transform:translateY(-50%);z-index:3;width:24px;height:24px;background:var(--lime);color:var(--bone);display:flex;align-items:center;justify-content:center;font-size:13px;}
+.flow .step .ar{position:absolute;top:16px;right:-27px;color:var(--sig-lt);font-size:22px;line-height:1;font-weight:700;}
 .flow .step:last-child .ar{display:none;}
-.flow-note{display:inline-flex;align-items:center;gap:14px;margin-top:20px;padding:12px 18px;border:2px solid var(--bone);font-family:'JetBrains Mono';font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+.flow-note{display:inline-flex;align-items:center;gap:14px;margin-top:32px;padding:12px 18px;border:2px solid var(--bone);font-family:'JetBrains Mono';font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
 .flow-note .sun{width:30px;height:30px;flex:none;background:var(--lime);color:var(--bone);display:flex;align-items:center;justify-content:center;font-size:15px;}
-.how-text{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:34px;}
+.how-text{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px;}
 .how-text p{font-size:15px;line-height:1.6;color:var(--bone-dim);margin:0;padding-top:18px;border-top:3px solid var(--sig-lt);}
 
 /* why – brand panel + reason cards */
 .why-in{display:grid;grid-template-columns:1fr 1fr;border:3px solid var(--ink);}
 .why-photos{position:relative;background:var(--ink);display:grid;}
 .why-brand{position:relative;min-height:200px;display:flex;flex-direction:column;justify-content:center;padding:32px 40px;overflow:hidden;background:repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(255,255,255,.05) 12px,rgba(255,255,255,.05) 13px);}
-.why-brand .wm{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70%;max-width:320px;opacity:.08;filter:brightness(0) invert(1);pointer-events:none;}
-.why-brand .kick{position:relative;z-index:1;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--sig-lt);margin-bottom:14px;}
+.why-brand .wm{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:480px;opacity:.08;filter:brightness(0) invert(1);pointer-events:none;}
+.why-brand .kick{position:relative;z-index:1;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--sig-lt);margin-bottom:14px;}
 .why-brand p{position:relative;z-index:1;font-family:'Oswald';font-weight:700;font-size:clamp(19px,2.4vw,25px);line-height:1.22;color:var(--bone);margin:0;max-width:360px;}
 .why-cards{border-left:3px solid var(--ink);display:grid;grid-template-columns:1fr 1fr;}
 .why-cards .wc{padding:22px 24px;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transition:.15s;}
@@ -279,7 +278,7 @@ footer .fcol a:hover{color:var(--ink);text-decoration:underline;}
   .plans .plan{border-right:none;border-bottom:3px solid var(--ink);} .plans .plan:last-child{border-bottom:none;}
   .plan .pimg img{transform:none;}
   .kit{grid-template-columns:1fr;} .kit .cell{border-right:none;border-bottom:3px solid var(--ink);} .kit .cell:last-child{border-bottom:none;}
-  .flow .step{border-right:none;border-bottom:3px solid var(--bone);} .flow .step:last-child{border-bottom:none;} .flow .step .ar{display:none;}
+  .flow .step .ar{display:none;}
   .why-photos{border-left:none;} .why-cards{border-left:none;border-top:3px solid var(--ink);grid-template-columns:1fr;}
   .why-cards .wc{border-right:none;}
   .why-cards .wc:nth-last-child(-n+2){border-bottom:3px solid var(--ink);}
@@ -554,8 +553,12 @@ f.addEventListener('submit',function(e){e.preventDefault();
     // strip sits on) and travel along that line — plenty of room, never touches any text
     var hc=document.querySelector('.hero-copy');var hcR=hc?hc.getBoundingClientRect():null;
     var leftBound=hcR?(hcR.left-fr.left+6):40;
-    var leftA=leftBound, rightA=dividerX-60; // left pair — under the copy column
-    var leftB=dividerX+60, rightB=Math.min((ir.right-fr.left)-60,w-40); // right pair — under the unit, clamped to stay on-screen
+    var rightBound=Math.min((ir.right-fr.left),w-40);
+    // quarter-point spacing within each half (not fixed-px from the divider) so each pair
+    // spreads evenly across its own side instead of clumping near the seam
+    var leftSpan=dividerX-leftBound, rightSpan=rightBound-dividerX;
+    var leftA=leftBound+leftSpan*0.25, rightA=leftBound+leftSpan*0.75; // left pair — under the copy column
+    var leftB=dividerX+rightSpan*0.25, rightB=dividerX+rightSpan*0.75; // right pair — under the unit
     var floorY=h-3;
     var rnd=mulberry32(0x5E17C0); // fixed seed, recreated on every build → identical wires across loads/resizes
 
@@ -577,8 +580,8 @@ f.addEventListener('submit',function(e){e.preventDefault();
       // connector block AT the product end
       var r=document.createElementNS(NS,'rect');r.setAttribute('x',fx-7);r.setAttribute('y',fy-7);r.setAttribute('width',14);r.setAttribute('height',14);r.setAttribute('fill','#121110');svg.appendChild(r);
       // icon node — sits on the bottom border, fed from above by the drop-and-run trace (bigger so the icon actually reads)
-      var bub=document.createElementNS(NS,'circle');bub.setAttribute('cx',bubbleX);bub.setAttribute('cy',floorY);bub.setAttribute('r',20);bub.setAttribute('fill','#121110');bub.setAttribute('stroke','#79CBA7');bub.setAttribute('stroke-width','2');svg.appendChild(bub);
-      var ic=document.createElementNS(NS,'text');ic.setAttribute('x',bubbleX);ic.setAttribute('y',floorY);ic.setAttribute('text-anchor','middle');ic.setAttribute('dominant-baseline','central');ic.setAttribute('font-size','19');ic.textContent=icons[i%icons.length];svg.appendChild(ic);
+      var bub=document.createElementNS(NS,'circle');bub.setAttribute('cx',bubbleX);bub.setAttribute('cy',floorY);bub.setAttribute('r',27);bub.setAttribute('fill','#121110');bub.setAttribute('stroke','#79CBA7');bub.setAttribute('stroke-width','2.8');svg.appendChild(bub);
+      var ic=document.createElementNS(NS,'text');ic.setAttribute('x',bubbleX);ic.setAttribute('y',floorY);ic.setAttribute('text-anchor','middle');ic.setAttribute('dominant-baseline','central');ic.setAttribute('font-size','23');ic.textContent=icons[i%icons.length];svg.appendChild(ic);
     }
     field.innerHTML='';field.appendChild(svg);
   }
