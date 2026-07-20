@@ -240,4 +240,7 @@ footer .fcol a:hover{color:var(--ink);text-decoration:underline;}
 		right: 0;
 		text-align: center;
 	}
+	footer {
+	    padding-bottom: 30px;
+	}
 }
