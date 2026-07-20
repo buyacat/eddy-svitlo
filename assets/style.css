@@ -72,7 +72,7 @@ body.open .drawer{pointer-events:auto;} body.open .drawer .sc{opacity:1;} body.o
 .hero-prod .sun-badge{position:absolute;z-index:3;top:26%;left:8%;width:34px;height:34px;border-radius:50%;background:var(--ink);border:1.5px solid var(--sig-lt);display:flex;align-items:center;justify-content:center;font-size:17px;color: #ffbd00;}
 
 /* hero trust list — overlay card on the unit photo, right side of the hero */
-.hero-stats{list-style:none;margin:0;padding:16px 18px;position:absolute;z-index:3;left:20px;bottom:150px;width:230px;background:var(--ink);border:1.5px solid var(--sig-lt);}
+.hero-stats{list-style:none;margin:0;padding:16px 18px 8px;position:absolute;z-index:3;left:20px;bottom:150px;width:230px;background:var(--ink);border:1.5px solid var(--sig-lt);}
 .hero-stats li{display:block;padding:9px 0;border-top:1px dashed rgba(236,231,219,.25);}
 .hero-stats li:first-child{border-top:none;padding-top:0;}
 .hero-stats .v{display:block;font-family:'Oswald',sans-serif;font-weight:700;font-size:15px;line-height:1.1;text-transform:uppercase;color:var(--bone);}
@@ -210,7 +210,7 @@ footer .fcol a:hover{color:var(--ink);text-decoration:underline;}
   .wire-field{display:none;}
   .hero-in,.plans,.cta-in,.foot-top,.why-in,.flow,.how-text{grid-template-columns:1fr;}
   .hero-copy{padding:0 0 40px 0;}
-  .hero-prod{border-left:none;order:-1;min-height:380px;margin-right:0;padding-bottom:24px;}
+  .hero-prod{border-left:none;order:-1;min-height:380px;margin-right:0;padding:24px 0;}
   .hero-prod img{transform:none;height: auto;}
   .hero-prod .plug{display:none;}
   .hero-stats{position:static;width:100%;margin:0 auto 0;}
