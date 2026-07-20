@@ -195,9 +195,9 @@ body.open .drawer{pointer-events:auto;} body.open .drawer .sc{opacity:1;} body.o
 .plan .pimg{position:relative;height:340px;display:grid;place-items:end center;margin:-34px -28px 22px;padding:20px;border-bottom:3px solid var(--ink);overflow:hidden;background:repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(18,17,16,.05) 12px,rgba(18,17,16,.05) 13px);}
 .plan.hot .pimg{background:repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(255,255,255,.1) 12px,rgba(255,255,255,.1) 13px),var(--lime);}
 .plan .pimg img{position:relative;z-index:3;width:auto;object-fit:contain;transform:translateX(56px);}
-.plan .pimg img.s1{max-height:270px;}
-.plan .pimg img.s2{max-height:250px;}
-.plan .pimg img.s3{max-height:270px;}
+.plan .pimg img.s1{max-height:270px;transform:translateX(56px) translateY(13px);}
+.plan .pimg img.s2{max-height:250px;transform:translateX(56px) translateY(15px);}
+.plan .pimg img.s3{max-height:270px;transform:translateX(56px) translateY(0);}
 .plan .povl{position:absolute;top:16px;left:20px;right:20px;z-index:2;pointer-events:none;}
 .plan .pw{font-family:'Oswald',sans-serif;font-weight:700;font-size:60px;line-height:.85;}
 .plan .unit{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-40);margin:8px 0 18px;}
@@ -281,7 +281,9 @@ footer .fcol a:hover{color:var(--ink);text-decoration:underline;}
   .hero-prod .plug{display:none;}
   .hero-stats{position:static;width:auto;margin:16px auto 0;}
   .plans .plan{border-right:none;border-bottom:3px solid var(--ink);} .plans .plan:last-child{border-bottom:none;}
-  .plan .pimg img{transform:none;}
+  .plan .pimg img.s1{transform:translateY(13px);}
+  .plan .pimg img.s2{transform:translateY(15px);}
+  .plan .pimg img.s3{transform:translateY(0);}
   .kit{grid-template-columns:1fr;} .kit .cell{border-right:none;border-bottom:3px solid var(--ink);} .kit .cell:last-child{border-bottom:none;}
   .flow .step .ar{display:none;}
   .why-photos{border-left:none;} .why-cards{border-left:none;border-top:3px solid var(--ink);grid-template-columns:1fr;}
