@@ -164,8 +164,10 @@ body.open .drawer{pointer-events:auto;} body.open .drawer .sc{opacity:1;} body.o
 .pad{padding:88px 0;}
 .pad + .pad{padding-top:0;}
 
-/* dark section variant */
-.pad.dark{background:var(--ink);color:var(--bone);}
+/* dark section variant — always symmetric top/bottom padding (opt out of the
+   .pad+.pad gap-sharing trick, which only makes sense between same-colored
+   sections; here the color change itself must read as evenly framed) */
+.pad.dark{background:var(--ink);color:var(--bone);padding-top:88px;}
 .pad.dark .sh2 .num{color:transparent;-webkit-text-stroke:2px var(--sig-lt);}
 
 /* kit list – big numbered rows */
@@ -288,6 +290,7 @@ footer .fcol a:hover{color:var(--ink);text-decoration:underline;}
 @media(max-width:600px){
   .wrap{padding:0 20px;}
   .pad{padding:56px 0;}
+  .pad.dark{padding-top:56px;}
   .sh2{margin-bottom:28px;} .sh2 .num{font-size:44px;}
   .sh2 h2{font-size:clamp(28px,8vw,40px);}
   .hero h1{font-size:clamp(34px,10vw,52px);}
@@ -548,17 +551,22 @@ f.addEventListener('submit',function(e){e.preventDefault();
     var svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox','0 0 '+w+' '+h);
     var N=4;
     var icons=['🏫','💻','🌐','🚨'];
-    var dividerX=pr.left-fr.left;
     // route straight down to the hero's own bottom border (the structural line the stats
     // strip sits on) and travel along that line — plenty of room, never touches any text
     var hc=document.querySelector('.hero-copy');var hcR=hc?hc.getBoundingClientRect():null;
     var leftBound=hcR?(hcR.left-fr.left+6):40;
-    var rightBound=Math.min((ir.right-fr.left),w-40);
-    // quarter-point spacing within each half (not fixed-px from the divider) so each pair
-    // spreads evenly across its own side instead of clumping near the seam
-    var leftSpan=dividerX-leftBound, rightSpan=rightBound-dividerX;
+    // the <img> element's own box is much wider than the actual photo (object-fit:contain
+    // letterboxes it to a centered square since height is the constraining side) — use the
+    // real visible photo bounds, not the padded element box, or the "right" pair lands in
+    // the empty transparent margin instead of under the unit
+    var visSize=Math.min(ir.width,ir.height);
+    var visLeft=(ir.left+(ir.width-visSize)/2)-fr.left;
+    var rightBound=Math.min(visLeft+visSize,w-40);
+    // quarter-point spacing within each half (not fixed-px from the seam) so each pair
+    // spreads evenly across its own side instead of clumping near the visible photo's edge
+    var leftSpan=visLeft-leftBound, rightSpan=rightBound-visLeft;
     var leftA=leftBound+leftSpan*0.25, rightA=leftBound+leftSpan*0.75; // left pair — under the copy column
-    var leftB=dividerX+rightSpan*0.25, rightB=dividerX+rightSpan*0.75; // right pair — under the unit
+    var leftB=visLeft+rightSpan*0.25, rightB=visLeft+rightSpan*0.75; // right pair — under the visible unit
     var floorY=h-3;
     var rnd=mulberry32(0x5E17C0); // fixed seed, recreated on every build → identical wires across loads/resizes
 
