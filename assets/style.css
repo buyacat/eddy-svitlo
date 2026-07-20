@@ -69,7 +69,7 @@ body.open .drawer{pointer-events:auto;} body.open .drawer .sc{opacity:1;} body.o
 .hero-prod img{position:relative;z-index:2;width:100%;max-height:520px;object-fit:contain;filter:drop-shadow(0 24px 30px rgba(18,17,16,.28));transform:translateX(-110px);}
 .hero-prod .plug{position:absolute;z-index:3;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10.5px;background:var(--ink);color:var(--sig-lt);padding:4px 9px;}
 .hero-prod .plug.p1{top:24%;left:-10px;} .hero-prod .plug.p2{bottom:24%;right:-10px;}
-.hero-prod .sun-badge{position:absolute;z-index:3;top:6%;right:8%;width:34px;height:34px;border-radius:50%;background:var(--ink);border:1.5px solid var(--sig-lt);display:flex;align-items:center;justify-content:center;font-size:17px;color: #ffbd00;}
+.hero-prod .sun-badge{position:absolute;z-index:3;top:26%;left:8%;width:34px;height:34px;border-radius:50%;background:var(--ink);border:1.5px solid var(--sig-lt);display:flex;align-items:center;justify-content:center;font-size:17px;color: #ffbd00;}
 
 /* hero trust list — overlay card on the unit photo, right side of the hero */
 .hero-stats{list-style:none;margin:0;padding:16px 18px;position:absolute;z-index:3;left:20px;bottom:150px;width:230px;background:var(--ink);border:1.5px solid var(--sig-lt);}
