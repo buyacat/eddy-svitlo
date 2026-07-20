@@ -210,7 +210,7 @@ body.open .drawer{pointer-events:auto;} body.open .drawer .sc{opacity:1;} body.o
 
 /* cta */
 .cta{background:var(--ink);color:var(--bone);border-top:3px solid var(--ink);}
-.cta-in{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center;padding:0 0 88px;}
+.cta-in{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center;padding:88px 0;}
 .cta .tag{background:var(--lime);color:var(--bone);}
 .cta h2{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(34px,5vw,60px);line-height:.88;margin:8px 0 16px;}
 .cta p{color:var(--bone-dim);font-size:17px;line-height:1.55;max-width:420px;}
@@ -300,7 +300,7 @@ footer .fcol a:hover{color:var(--ink);text-decoration:underline;}
   .hero h1{font-size:clamp(34px,10vw,52px);}
   .hero .lede{font-size:16px;}
   .plan .pw{font-size:48px;}
-  .cta-in{padding:0 0 56px;gap:28px;}
+  .cta-in{padding:56px 0;gap:28px;}
   .form{padding:24px;}
   .wire-field{display:none;}
   .how-text{gap:16px;}
@@ -441,7 +441,7 @@ footer .fcol a:hover{color:var(--ink);text-decoration:underline;}
         <div class="why-brand">
           <img class="wm" src="img/eddy-white.svg" alt="" aria-hidden="true" />
           <span class="kick mono">EDDY GROUP</span>
-          <p>Не постачальник обладнання, а підрядник, який відповідає за результат — від розрахунку потужності до сервісу після монтажу.</p>
+          <p>Не просто постачальник обладнання, а підрядник, який відповідає за результат — від розрахунку потужності до сервісу після монтажу.</p>
         </div>
       </div>
       <div class="why-cards">
@@ -550,8 +550,17 @@ f.addEventListener('submit',function(e){e.preventDefault();
     var fr=field.getBoundingClientRect();var w=fr.width,h=fr.height;if(w<10||h<10)return;
     var pr=vp.getBoundingClientRect();
     var pImg=document.getElementById('prod');var ir=pImg?pImg.getBoundingClientRect():pr;
-    // wires bundle out from under the unit (near its cable-gland row), not its vertical center
-    var cx=(ir.left+ir.width*0.5)-fr.left, cy=(ir.top+ir.height*0.89)-fr.top;
+    // the PNG itself has transparent padding around the device silhouette even within its own
+    // square canvas (mounting hardware/shadow headroom) — measured via an alpha-channel scan of
+    // img/inverter-cut.png: the visible unit spans ~21.6%-80.6% of the square width, ~9.7%-91.5%
+    // of its height. Using the full square (or worse, the full <img> box) instead of these
+    // fractions puts icons/wire-origin in dead transparent space instead of under the unit.
+    var DEV_L=0.216,DEV_R=0.806,DEV_T=0.097,DEV_B=0.915;
+    var visSize=Math.min(ir.width,ir.height);
+    var visLeft=(ir.left+(ir.width-visSize)/2)-fr.left, visTop=(ir.top+(ir.height-visSize)/2)-fr.top;
+    var devL=visLeft+visSize*DEV_L, devR=visLeft+visSize*DEV_R;
+    // wires bundle out from under the unit (near its cable-gland row, close to its true bottom edge)
+    var cx=visLeft+visSize*(DEV_L+DEV_R)/2, cy=visTop+visSize*DEV_B-6;
     var svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox','0 0 '+w+' '+h);
     var N=4;
     var icons=['🏫','💻','🌐','🚨'];
@@ -559,18 +568,12 @@ f.addEventListener('submit',function(e){e.preventDefault();
     // strip sits on) and travel along that line — plenty of room, never touches any text
     var hc=document.querySelector('.hero-copy');var hcR=hc?hc.getBoundingClientRect():null;
     var leftBound=hcR?(hcR.left-fr.left+6):40;
-    // the <img> element's own box is much wider than the actual photo (object-fit:contain
-    // letterboxes it to a centered square since height is the constraining side) — use the
-    // real visible photo bounds, not the padded element box, or the "right" pair lands in
-    // the empty transparent margin instead of under the unit
-    var visSize=Math.min(ir.width,ir.height);
-    var visLeft=(ir.left+(ir.width-visSize)/2)-fr.left;
-    var rightBound=Math.min(visLeft+visSize,w-40);
+    var rightBound=Math.min(devR,w-40);
     // quarter-point spacing within each half (not fixed-px from the seam) so each pair
     // spreads evenly across its own side instead of clumping near the visible photo's edge
-    var leftSpan=visLeft-leftBound, rightSpan=rightBound-visLeft;
+    var leftSpan=devL-leftBound, rightSpan=rightBound-devL;
     var leftA=leftBound+leftSpan*0.25, rightA=leftBound+leftSpan*0.75; // left pair — under the copy column
-    var leftB=visLeft+rightSpan*0.25, rightB=visLeft+rightSpan*0.75; // right pair — under the visible unit
+    var leftB=devL+rightSpan*0.25, rightB=devL+rightSpan*0.75; // right pair — under the visible unit
     var BR=27; // bubble radius — floorY must clear it, or .hero's overflow:hidden clips the bubble/emoji in half
     var floorY=h-BR-6;
     var rnd=mulberry32(0x5E17C0); // fixed seed, recreated on every build → identical wires across loads/resizes
