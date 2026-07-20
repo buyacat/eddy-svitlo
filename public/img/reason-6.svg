@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#12283A"></stop>
+      <stop offset="100%" stop-color="#0A1622"></stop>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#24425A" stroke-width="1" opacity="0.35"></path>
+    </pattern>
+  </defs>
+  <rect width="800" height="900" fill="url(#bg)"></rect>
+  <rect width="800" height="900" fill="url(#grid)"></rect>
+  <circle cx="400" cy="420" r="190" fill="none" stroke="#10B981" stroke-width="2" opacity="0.35"></circle>
+  <circle cx="400" cy="420" r="150" fill="rgba(16,185,129,0.08)"></circle>
+  <g transform="translate(400,420)" stroke="#6FE9C0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <circle cx="0" cy="0" r="55"></circle><line x1="0" y1="-100" x2="0" y2="-80"></line><line x1="0" y1="100" x2="0" y2="80"></line><line x1="-100" y1="0" x2="-80" y2="0"></line><line x1="100" y1="0" x2="80" y2="0"></line><line x1="-70" y1="-70" x2="-56" y2="-56"></line><line x1="70" y1="-70" x2="56" y2="-56"></line><line x1="-70" y1="70" x2="-56" y2="56"></line><line x1="70" y1="70" x2="56" y2="56"></line>
+  </g>
+  <text x="400" y="790" font-family="JetBrains Mono, monospace" font-size="22" letter-spacing="3" fill="#8FB0C4" text-anchor="middle" opacity="0.8">ГОТОВНІСТЬ ДО СОНЦЯ</text>
+</svg>

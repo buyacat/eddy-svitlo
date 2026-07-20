@@ -1,0 +1,41 @@
+---
+import { footer } from '../data/site.ts';
+
+const icons: Record<string, string> = {
+  facebook:
+    'M22 12.06C22 6.48 17.52 2 11.94 2 6.36 2 1.88 6.48 1.88 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.42V9.91c0-2.39 1.42-3.71 3.6-3.71 1.04 0 2.13.19 2.13.19v2.34h-1.2c-1.18 0-1.55.73-1.55 1.48v1.78h2.64l-.42 2.91h-2.22V22c4.78-.76 8.44-4.92 8.44-9.94z',
+  youtube:
+    'M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3.02 3.02 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.56a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z',
+};
+---
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="f-brand">
+        <img class="logo" src="/img/eddy-ink.svg" alt="EDDY Group" width="910" height="150" loading="lazy" />
+        <p>{footer.description}</p>
+      </div>
+      <div class="fcol">
+        <h3>{footer.navTitle}</h3>
+        {footer.navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+      </div>
+      <div class="fcol">
+        <h3>{footer.contactTitle}</h3>
+        <a href={footer.phone.href}>{footer.phone.label}</a>
+        <a href={footer.email.href}>{footer.email.label}</a>
+        <p>{footer.address}</p>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <div class="cp">{footer.copyright}</div>
+      <div class="f-social">
+        {footer.social.map((s) => (
+          <a href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}>
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true" focusable="false"><path d={icons[s.icon]}></path></svg>
+          </a>
+        ))}
+      </div>
+      <div class="made"><span class="flag"></span> {footer.madeIn}</div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,25 @@
+---
+import { nav } from '../data/site.ts';
+---
+<nav>
+  <div class="wrap nav-in">
+    <img class="logo" src="/img/eddy-ink.svg" alt="EDDY Group" width="910" height="150" />
+    <div class="links">
+      {nav.links.map((l) => (
+        <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noreferrer' : undefined}>{l.label}</a>
+      ))}
+    </div>
+    <div class="nav-cta">
+      <a class="apply" href={nav.cta.href}>{nav.cta.label}</a>
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="drawer" id="drawer">
+  <div class="sc" data-close></div>
+  <div class="sh">
+    {nav.links.map((l) => (
+      <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noreferrer' : undefined} data-close>{l.label}</a>
+    ))}
+  </div>
+</div>

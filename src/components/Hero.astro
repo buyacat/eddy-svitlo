@@ -1,0 +1,28 @@
+---
+import { hero } from '../data/site.ts';
+---
+<header class="hero">
+  <div class="wire-field" id="wireField" aria-hidden="true"></div>
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <span class="tag">{hero.tag}</span>
+      <h1 set:html={hero.titleHtml} />
+      <p class="lede">{hero.lede}</p>
+      <div class="hbtns">
+        {hero.buttons.map((b) => <a class={b.variant} href={b.href}>{b.label}</a>)}
+      </div>
+    </div>
+    <div class="hero-prod">
+      <h1 set:html={hero.titleHtml} />
+      <span class="plug p1 mono">{hero.plugLabels.left}</span>
+      <span class="sun-badge" title={hero.sunBadgeTitle}>☀</span>
+      <img id="prod" src={hero.productImage.src} alt={hero.productImage.alt} width={hero.productImage.width} height={hero.productImage.height} fetchpriority="high" decoding="async" />
+      <span class="plug p2 mono">{hero.plugLabels.right}</span>
+      <ul class="hero-stats" aria-label="Ключові переваги">
+        {hero.stats.map((s) => (
+          <li><span class="v">{s.value}</span><span class="k">{s.label}</span></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</header>

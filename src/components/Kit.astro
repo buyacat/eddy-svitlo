@@ -1,0 +1,16 @@
+---
+import { kit } from '../data/site.ts';
+---
+<section class="pad">
+  <div class="wrap">
+    <div class="sh2">
+      <div class="num">{kit.num}</div>
+      <div><h2 set:html={kit.titleHtml} /></div>
+    </div>
+    <div class="kit">
+      {kit.cells.map((c) => (
+        <div class="cell"><h3>{c.title}</h3><p>{c.text}</p></div>
+      ))}
+    </div>
+  </div>
+</section>

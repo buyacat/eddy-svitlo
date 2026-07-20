@@ -1,0 +1,85 @@
+---
+import { seo, organization, service } from '../data/site.ts';
+
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: organization.name,
+  alternateName: organization.alternateName,
+  url: organization.url,
+  logo: organization.logo,
+  image: organization.image,
+  telephone: organization.telephone,
+  email: organization.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: organization.address.streetAddress,
+    addressLocality: organization.address.addressLocality,
+    addressCountry: organization.address.addressCountry,
+  },
+  sameAs: organization.sameAs,
+};
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: service.serviceType,
+  name: service.name,
+  description: service.description,
+  provider: {
+    '@type': 'Organization',
+    name: organization.name,
+    url: organization.url,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: service.areaServed,
+  },
+  audience: {
+    '@type': 'Audience',
+    audienceType: service.audienceType,
+  },
+};
+---
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<title>{seo.title}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content={seo.description} />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content={seo.themeColor} />
+<link rel="canonical" href={seo.canonical} />
+<link rel="icon" href="/img/eddy-ink.svg" type="image/svg+xml" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={seo.siteName} />
+<meta property="og:locale" content={seo.locale} />
+<meta property="og:title" content={seo.title} />
+<meta property="og:description" content={seo.ogDescription} />
+<meta property="og:url" content={seo.canonical} />
+<!-- TODO: swap for a dedicated 1200×630 OG share image once designed — placeholder reuses the hero product cut-out -->
+<meta property="og:image" content={seo.ogImage.url} />
+<meta property="og:image:width" content={String(seo.ogImage.width)} />
+<meta property="og:image:height" content={String(seo.ogImage.height)} />
+<meta property="og:image:type" content={seo.ogImage.type} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={seo.title} />
+<meta name="twitter:description" content={seo.ogDescription} />
+<meta name="twitter:image" content={seo.ogImage.url} />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/img/inverter-cut.png" fetchpriority="high">
+<link href="/style.css" rel="stylesheet">
+
+<script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
+</head>
+<body>
+<slot />
+</body>
+</html>

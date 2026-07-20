@@ -1,0 +1,20 @@
+---
+import { how } from '../data/site.ts';
+---
+<section class="pad dark" id="how">
+  <div class="wrap">
+    <div class="sh2">
+      <div class="num">{how.num}</div>
+      <div><h2 set:html={how.titleHtml} /></div>
+    </div>
+    <div class="flow">
+      {how.steps.map((s) => (
+        <div class="step"><div class="sn">{s.code}</div><h3>{s.title}</h3><p>{s.text}</p><div class="ar">→</div></div>
+      ))}
+    </div>
+    <div class="flow-note"><span class="sun">☀</span> {how.flowNote}</div>
+    <div class="how-text">
+      {how.paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+  </div>
+</section>

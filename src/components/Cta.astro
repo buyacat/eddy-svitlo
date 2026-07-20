@@ -1,0 +1,25 @@
+---
+import { cta } from '../data/site.ts';
+---
+<section class="cta" id="contact">
+  <div class="wrap cta-in">
+    <div>
+      <span class="tag">{cta.tag}</span>
+      <h2>{cta.title}</h2>
+      <p>{cta.text}</p>
+    </div>
+    <!-- Web3Forms: встав робочий ключ у value нижче (30 сек на web3forms.com → email office@eddygroup.eu → ключ прийде на пошту). Поки стоїть плейсхолдер, форма показує повідомлення "не підключено". -->
+    <form class="form" id="leadForm" action={cta.form.action} method="POST">
+      <input type="hidden" name="access_key" value={cta.form.accessKey}>
+      <input type="hidden" name="subject" value={cta.form.subject}>
+      <input type="hidden" name="from_name" value={cta.form.fromName}>
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <label for="lf-estab">Назва закладу</label>
+      <input id="lf-estab" name="Заклад" placeholder="Гімназія №— / громада" autocomplete="organization" required />
+      <label for="lf-phone">Телефон</label>
+      <input id="lf-phone" name="Телефон" type="tel" inputmode="tel" placeholder="+380 —" autocomplete="tel" required />
+      <button type="submit" class="send">{cta.form.submitLabel}</button>
+      <p class="form-msg" id="lf-msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>

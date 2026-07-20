@@ -1,0 +1,28 @@
+---
+import { plans } from '../data/site.ts';
+---
+<section class="pad" id="plans">
+  <div class="wrap">
+    <div class="sh2">
+      <div class="num">{plans.num}</div>
+      <div><h2 set:html={plans.titleHtml} /></div>
+    </div>
+    <div class="plans">
+      {plans.items.map((p) => (
+        <div class:list={['plan', { hot: p.hot }]}>
+          <div class="pimg">
+            <div class="povl">
+              {p.badge && <span class="badge">{p.badge}</span>}
+              <div class="pw">{p.power}</div>
+              <div class="unit">{p.unit}</div>
+            </div>
+            <img class={p.image.class} src={p.image.src} alt={p.image.alt} width={p.image.width} height={p.image.height} loading="lazy" decoding="async" />
+          </div>
+          <h3 class="desc">{p.desc}</h3>
+          <ul>{p.features.map((f) => <li>{f}</li>)}</ul>
+          <a class="pbtn" href="#contact">{plans.buttonLabel}</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

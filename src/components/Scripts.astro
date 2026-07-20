@@ -1,0 +1,92 @@
+<script>
+/* burger / drawer */
+(function(){var b=document.body,burger=document.getElementById('burger'),d=document.getElementById('drawer');
+if(!burger||!d)return;
+function set(o){b.classList.toggle('open',o);burger.setAttribute('aria-expanded',o?'true':'false');}
+burger.addEventListener('click',function(){set(!b.classList.contains('open'));});
+d.querySelectorAll('[data-close]').forEach(function(e){e.addEventListener('click',function(){set(false);});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+window.addEventListener('resize',function(){if(innerWidth>1080)set(false);});})();
+
+/* nav scroll-detach */
+(function(){var nav=document.querySelector('nav');if(!nav)return;
+function onScroll(){nav.classList.toggle('scrolled',(window.scrollY||0)>24);}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
+
+/* lead form (Web3Forms) */
+(function(){var f=document.getElementById('leadForm');if(!f)return;var msg=document.getElementById('lf-msg');
+f.addEventListener('submit',function(e){e.preventDefault();
+  var key=(f.querySelector('[name=access_key]')||{}).value||'';
+  if(key.indexOf('REPLACE_')===0){msg.textContent='Форму ще не підключено — потрібен Web3Forms ключ.';msg.className='form-msg err';return;}
+  msg.textContent='Надсилаємо…';msg.className='form-msg';
+  fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+    .then(function(r){return r.json();})
+    .then(function(d){if(d.success){f.reset();msg.textContent='Дякуємо! Ми звʼяжемось найближчим часом.';msg.className='form-msg ok';}
+      else{msg.textContent='Не вдалося надіслати. Спробуйте ще раз або зателефонуйте нам.';msg.className='form-msg err';}})
+    .catch(function(){msg.textContent='Помилка мережі. Спробуйте ще раз або зателефонуйте нам.';msg.className='form-msg err';});
+});})();
+
+/* hero patch cables — deterministic geometry (seeded PRNG, reseeded each build) */
+(function(){
+  var field=document.getElementById('wireField'),vp=document.querySelector('.hero-prod');
+  if(!field||!vp)return;var NS='http://www.w3.org/2000/svg';
+  function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  function build(){
+    var fr=field.getBoundingClientRect();var w=fr.width,h=fr.height;if(w<10||h<10)return;
+    var pr=vp.getBoundingClientRect();
+    var pImg=document.getElementById('prod');var ir=pImg?pImg.getBoundingClientRect():pr;
+    // the PNG itself has transparent padding around the device silhouette even within its own
+    // square canvas (mounting hardware/shadow headroom) — measured via an alpha-channel scan of
+    // img/inverter-cut.png: the visible unit spans ~21.6%-80.6% of the square width, ~9.7%-91.5%
+    // of its height. Using the full square (or worse, the full <img> box) instead of these
+    // fractions puts icons/wire-origin in dead transparent space instead of under the unit.
+    var DEV_L=0.216,DEV_R=0.806,DEV_T=0.097,DEV_B=0.915;
+    var visSize=Math.min(ir.width,ir.height);
+    var visLeft=(ir.left+(ir.width-visSize)/2)-fr.left, visTop=(ir.top+(ir.height-visSize)/2)-fr.top;
+    var devL=visLeft+visSize*DEV_L, devR=visLeft+visSize*DEV_R;
+    // wires bundle out from under the unit (near its cable-gland row, close to its true bottom edge)
+    var cx=visLeft+visSize*(DEV_L+DEV_R)/2, cy=visTop+visSize*DEV_B-6;
+    var svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox','0 0 '+w+' '+h);
+    var N=4;
+    var icons=['🏫','💻','🌐','🚨'];
+    // route straight down to the hero's own bottom border (the structural line the stats
+    // strip sits on) and travel along that line — plenty of room, never touches any text
+    var hc=document.querySelector('.hero-copy');var hcR=hc?hc.getBoundingClientRect():null;
+    var leftBound=hcR?(hcR.left-fr.left+6):40;
+    var rightBound=Math.min(devR,w-40);
+    // quarter-point spacing within each half (not fixed-px from the seam) so each pair
+    // spreads evenly across its own side instead of clumping near the visible photo's edge
+    var leftSpan=devL-leftBound, rightSpan=rightBound-devL;
+    var leftA=leftBound+leftSpan*0.25, rightA=leftBound+leftSpan*0.75; // left pair — under the copy column
+    var leftB=devL+rightSpan*0.25, rightB=devL+rightSpan*0.75; // right pair — under the visible unit
+    var BR=27; // bubble radius — floorY must clear it, or .hero's overflow:hidden clips the bubble/emoji in half
+    var floorY=h-BR-6;
+    var rnd=mulberry32(0x5E17C0); // fixed seed, recreated on every build → identical wires across loads/resizes
+
+    for(var i=0;i<N;i++){
+      // 2 nodes left of the divider, 2 right of it (under the unit), each pair spread across its own half
+      var bubbleX=i<2 ? leftA+(rightA-leftA)*i : leftB+(rightB-leftB)*(i-2);
+      // origin: a tight bundle right at the unit's cable-gland row
+      var fx=cx+(rnd()*70-35), fy=cy+(rnd()*30-8);
+      // straight down to the line, then along it to the node — own lane per wire (tiny y-stagger)
+      var laneY=floorY-i*3;
+      var d='M'+fx+','+fy+' L'+fx+','+laneY+' L'+bubbleX+','+laneY+' L'+bubbleX+','+floorY;
+      var p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('fill','none');
+      p.setAttribute('stroke','#121110');p.setAttribute('stroke-width',(5+rnd()*2).toFixed(1));
+      p.setAttribute('stroke-linecap','round');p.setAttribute('stroke-linejoin','round');p.setAttribute('opacity','.9');svg.appendChild(p);
+      // energy core — dashes flow outward, away from the unit (thicker + tighter dashes so the pulse actually reads)
+      var pc=document.createElementNS(NS,'path');pc.setAttribute('d',d);pc.setAttribute('fill','none');
+      pc.setAttribute('stroke','#79CBA7');pc.setAttribute('stroke-width','3');pc.setAttribute('stroke-dasharray','4 12');pc.setAttribute('stroke-linecap','round');pc.setAttribute('stroke-linejoin','round');
+      var an=document.createElementNS(NS,'animate');an.setAttribute('attributeName','stroke-dashoffset');an.setAttribute('from','0');an.setAttribute('to','-160');an.setAttribute('dur',(1.8+rnd()*1.4).toFixed(2)+'s');an.setAttribute('repeatCount','indefinite');pc.appendChild(an);svg.appendChild(pc);
+      // connector block AT the product end
+      var r=document.createElementNS(NS,'rect');r.setAttribute('x',fx-7);r.setAttribute('y',fy-7);r.setAttribute('width',14);r.setAttribute('height',14);r.setAttribute('fill','#121110');svg.appendChild(r);
+      // icon node — sits on the bottom border, fed from above by the drop-and-run trace (bigger so the icon actually reads)
+      var bub=document.createElementNS(NS,'circle');bub.setAttribute('cx',bubbleX);bub.setAttribute('cy',floorY);bub.setAttribute('r',BR);bub.setAttribute('fill','#121110');bub.setAttribute('stroke','#79CBA7');bub.setAttribute('stroke-width','2.8');svg.appendChild(bub);
+      var ic=document.createElementNS(NS,'text');ic.setAttribute('x',bubbleX);ic.setAttribute('y',floorY);ic.setAttribute('text-anchor','middle');ic.setAttribute('dominant-baseline','central');ic.setAttribute('font-size','23');ic.textContent=icons[i%icons.length];svg.appendChild(ic);
+    }
+    field.innerHTML='';field.appendChild(svg);
+  }
+  window.addEventListener('load',build);
+  var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(build,200);});
+})();
+</script>

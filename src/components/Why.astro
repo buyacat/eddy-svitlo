@@ -1,0 +1,25 @@
+---
+import { why } from '../data/site.ts';
+---
+<section class="pad">
+  <div class="wrap">
+    <div class="sh2">
+      <div class="num">{why.num}</div>
+      <div><h2 set:html={why.titleHtml} /></div>
+    </div>
+    <div class="why-in">
+      <div class="why-photos">
+        <div class="why-brand">
+          <img class="wm" src="/img/eddy-white.svg" alt="" aria-hidden="true" />
+          <span class="kick mono">{why.brandKicker}</span>
+          <p>{why.brandText}</p>
+        </div>
+      </div>
+      <div class="why-cards">
+        {why.cards.map((c) => (
+          <div class="wc"><div class="mk"></div><h3>{c.title}</h3><p>{c.text}</p></div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
