@@ -194,14 +194,26 @@ footer .fcol a:hover{color:var(--ink);text-decoration:underline;}
 @media(max-width:1080px){
   .links{display:none;} .burger{display:flex;}
 }
+.hero-prod h1 {
+    display: none;
+}
 @media(max-width:920px){
+	.hero-prod h1 {
+    display: block;
+}
+	.hero-copy .tag, .hero-copy h1 {
+	    display: none;
+	}
+	.hero .lede {
+    margin-top: 0;
+}
   .wire-field{display:none;}
   .hero-in,.plans,.cta-in,.foot-top,.why-in,.flow,.how-text{grid-template-columns:1fr;}
-  .hero-copy{padding:40px 0;}
+  .hero-copy{padding:0 0 40px 0;}
   .hero-prod{border-left:none;order:-1;min-height:380px;margin-right:0;padding-bottom:24px;}
-  .hero-prod img{transform:none;}
+  .hero-prod img{transform:none;height: auto;}
   .hero-prod .plug{display:none;}
-  .hero-stats{position:static;width:auto;margin:16px auto 0;}
+  .hero-stats{position:static;width:100%;margin:0 auto 0;}
   .plans .plan{border-right:none;border-bottom:3px solid var(--ink);} .plans .plan:last-child{border-bottom:none;}
   .plan .pimg img.s1{transform:translateY(13px);}
   .plan .pimg img.s2{transform:translateY(15px);}
