@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://svitlo.eddygroup.eu/sitemap.xml
