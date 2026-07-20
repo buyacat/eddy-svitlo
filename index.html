@@ -77,54 +77,6 @@
   }
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Чи працює система без сонячних панелей?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Так. Сонячні панелі — додаткова опція. Система може працювати лише від електромережі та акумуляторів."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Чи можна встановити сонячні панелі пізніше?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Так. Система підтримує подальше підключення сонячної електростанції."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Чи проводите монтаж?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Так. Монтаж виконують власні сертифіковані спеціалісти EDDY Group."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Яка гарантія на обладнання?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Гарантія залежить від виробника та комплектації. Детальна інформація надається разом із комерційною пропозицією."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Чи можна адаптувати систему під конкретний заклад?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Так. Ми підбираємо комплектацію відповідно до потужності, навантаження та особливостей об'єкта."
-      }
-    }
-  ]
-}
-</script>
 <style>
 :root{
   --bone:#ECE7DB; --bone2:#E3DDCE; --ink:#121110; --lime:#1F6B4E; --lime-d:#164E39; --sig-lt:#79CBA7; --red:#F04322;
@@ -298,13 +250,14 @@ footer .fcol a:hover{color:var(--ink);text-decoration:underline;}
 /* why – brand panel + reason cards */
 .why-in{display:grid;grid-template-columns:1fr 1fr;border:3px solid var(--ink);}
 .why-photos{position:relative;background:var(--ink);display:grid;}
-.why-brand{position:relative;min-height:360px;display:flex;flex-direction:column;justify-content:center;padding:40px;overflow:hidden;background:repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(255,255,255,.05) 12px,rgba(255,255,255,.05) 13px);}
+.why-brand{position:relative;min-height:200px;display:flex;flex-direction:column;justify-content:center;padding:32px 40px;overflow:hidden;background:repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(255,255,255,.05) 12px,rgba(255,255,255,.05) 13px);}
 .why-brand .wm{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70%;max-width:320px;opacity:.08;filter:brightness(0) invert(1);pointer-events:none;}
 .why-brand .kick{position:relative;z-index:1;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--sig-lt);margin-bottom:14px;}
 .why-brand p{position:relative;z-index:1;font-family:'Oswald';font-weight:700;font-size:clamp(19px,2.4vw,25px);line-height:1.22;color:var(--bone);margin:0;max-width:360px;}
-.why-cards{border-left:3px solid var(--ink);display:grid;grid-template-columns:1fr;}
-.why-cards .wc{padding:22px 24px;border-bottom:3px solid var(--ink);transition:.15s;}
-.why-cards .wc:last-child{border-bottom:none;}
+.why-cards{border-left:3px solid var(--ink);display:grid;grid-template-columns:1fr 1fr;}
+.why-cards .wc{padding:22px 24px;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transition:.15s;}
+.why-cards .wc:nth-child(2n){border-right:none;}
+.why-cards .wc:nth-last-child(-n+2){border-bottom:none;}
 .why-cards .wc:hover{background:var(--ink);color:var(--bone);}
 .why-cards .wc .mk{width:26px;height:5px;background:var(--lime);margin-bottom:11px;}
 .why-cards .wc:hover .mk{background:var(--sig-lt);}
@@ -327,8 +280,11 @@ footer .fcol a:hover{color:var(--ink);text-decoration:underline;}
   .plan .pimg img{transform:none;}
   .kit{grid-template-columns:1fr;} .kit .cell{border-right:none;border-bottom:3px solid var(--ink);} .kit .cell:last-child{border-bottom:none;}
   .flow .step{border-right:none;border-bottom:3px solid var(--bone);} .flow .step:last-child{border-bottom:none;} .flow .step .ar{display:none;}
-  .why-photos{border-left:none;} .why-cards{border-left:none;border-top:3px solid var(--ink);}
-  .why-brand{min-height:260px;padding:30px 24px;}
+  .why-photos{border-left:none;} .why-cards{border-left:none;border-top:3px solid var(--ink);grid-template-columns:1fr;}
+  .why-cards .wc{border-right:none;}
+  .why-cards .wc:nth-last-child(-n+2){border-bottom:3px solid var(--ink);}
+  .why-cards .wc:last-child{border-bottom:none;}
+  .why-brand{min-height:200px;padding:28px 24px;}
 }
 @media(max-width:600px){
   .wrap{padding:0 20px;}
@@ -487,7 +443,6 @@ footer .fcol a:hover{color:var(--ink);text-decoration:underline;}
         <div class="wc"><div class="mk"></div><h3>Дозволи на роботи</h3><p>Роботи за чинними нормами та вимогами.</p></div>
         <div class="wc"><div class="mk"></div><h3>Технічна підтримка</h3><p>Консультації на всіх етапах проєкту.</p></div>
         <div class="wc"><div class="mk"></div><h3>Віддалений моніторинг</h3><p>Контроль стану системи через застосунок або вебінтерфейс.</p></div>
-        <div class="wc"><div class="mk"></div><h3>Підбір рішення</h3><p>Обладнання під потреби саме вашого закладу.</p></div>
       </div>
     </div>
   </div>
