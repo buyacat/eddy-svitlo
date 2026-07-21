@@ -3,7 +3,7 @@ import { nav } from '../data/site.ts';
 ---
 <nav>
   <div class="wrap nav-in">
-    <img class="logo" src="/img/eddy-ink.svg" alt="EDDY Group" width="910" height="150" />
+    <img class="logo" src="img/eddy-ink.svg" alt="EDDY Group" width="910" height="150" />
     <div class="links">
       {nav.links.map((l) => (
         <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noreferrer' : undefined}>{l.label}</a>

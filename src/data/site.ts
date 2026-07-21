@@ -69,7 +69,7 @@ export const hero = {
     { label: 'Отримати консультацію', href: '#contact', variant: 'b1' },
     { label: 'Підібрати рішення', href: '#plans', variant: 'b2' },
   ],
-  productImage: { src: '/img/inverter-cut.png', alt: 'Гібридний трифазний інвертор', width: 1694, height: 1694 },
+  productImage: { src: 'img/inverter-cut.png', alt: 'Гібридний трифазний інвертор', width: 1694, height: 1694 },
   plugLabels: { left: 'AC / GRID', right: 'PV + АКБ' },
   stats: [
     { value: '24 / 7', label: 'Живлення під час відключень' },
@@ -108,7 +108,7 @@ export const plans = {
   titleHtml: 'Оберіть рішення<br>під ваш заклад',
   items: [
     {
-      image: { src: '/img/kstar-inverter.png', alt: 'Настінний гібридний інвертор', width: 700, height: 700, class: 's1' },
+      image: { src: 'img/kstar-inverter.png', alt: 'Настінний гібридний інвертор', width: 700, height: 700, class: 's1' },
       power: '12/20',
       unit: 'кВт інвертор / АКБ',
       badge: null,
@@ -117,7 +117,7 @@ export const plans = {
       features: ['Трифазний інвертор', 'LiFePO₄ АКБ', 'Масштабування'],
     },
     {
-      image: { src: '/img/kstar-batteries.png', alt: 'LiFePO₄ акумуляторні вежі', width: 700, height: 700, class: 's2' },
+      image: { src: 'img/kstar-batteries.png', alt: 'LiFePO₄ акумуляторні вежі', width: 700, height: 700, class: 's2' },
       power: '20/50',
       unit: 'кВт інвертор / АКБ',
       badge: 'рекомендовано',
@@ -126,7 +126,7 @@ export const plans = {
       features: ['Більша потужність', 'Вища продуктивність', 'Сонячні панелі'],
     },
     {
-      image: { src: '/img/kstar-cabinet.png', alt: 'Промислова система резервного живлення', width: 1000, height: 1000, class: 's3' },
+      image: { src: 'img/kstar-cabinet.png', alt: 'Промислова система резервного живлення', width: 1000, height: 1000, class: 's3' },
       power: '50/100',
       unit: 'кВт інвертор / АКБ',
       badge: null,
