@@ -15,7 +15,6 @@ import { hero } from '../data/site.ts';
     <div class="hero-prod">
       <h1 set:html={hero.titleHtml} />
       <span class="plug p1 mono">{hero.plugLabels.left}</span>
-      <span class="sun-badge" title={hero.sunBadgeTitle}>☀</span>
       <img id="prod" src={hero.productImage.src} alt={hero.productImage.alt} width={hero.productImage.width} height={hero.productImage.height} fetchpriority="high" decoding="async" />
       <span class="plug p2 mono">{hero.plugLabels.right}</span>
       <ul class="hero-stats" aria-label="Ключові переваги">

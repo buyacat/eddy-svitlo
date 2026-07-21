@@ -20,10 +20,17 @@ const icons: Record<string, string> = {
         {footer.navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
       </div>
       <div class="fcol">
-        <h3>{footer.contactTitle}</h3>
-        <a href={footer.phone.href}>{footer.phone.label}</a>
-        <a href={footer.email.href}>{footer.email.label}</a>
-        <p>{footer.address}</p>
+        <h3>{footer.officeTitle}</h3>
+        <a href={footer.officePhone.href}>{footer.officePhone.label}</a>
+        <a href={footer.officeEmail.href}>{footer.officeEmail.label}</a>
+        <p>{footer.officeAddress}</p>
+      </div>
+      <div class="fcol">
+        <h3>{footer.serviceTitle}</h3>
+        <p>{footer.serviceHours}</p>
+        <a href={footer.servicePhone.href}>{footer.servicePhone.label}</a>
+        <a href={footer.serviceEmail.href}>{footer.serviceEmail.label}</a>
+        <a href={footer.warranty.href} target="_blank" rel="noreferrer">{footer.warranty.label}</a>
       </div>
     </div>
     <div class="foot-bot">
@@ -35,7 +42,6 @@ const icons: Record<string, string> = {
           </a>
         ))}
       </div>
-      <div class="made"><span class="flag"></span> {footer.madeIn}</div>
     </div>
   </div>
 </footer>

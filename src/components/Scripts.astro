@@ -28,10 +28,25 @@ f.addEventListener('submit',function(e){e.preventDefault();
 
 /* hero patch cables — deterministic geometry (seeded PRNG, reseeded each build) */
 (function(){
-  var field=document.getElementById('wireField'),vp=document.querySelector('.hero-prod');
-  if(!field||!vp)return;var NS='http://www.w3.org/2000/svg';
+  var field=document.getElementById('wireField'),vp=document.querySelector('.hero-prod'),heroEl=document.querySelector('.hero');
+  if(!field||!vp||!heroEl)return;var NS='http://www.w3.org/2000/svg';
+  // move the field out of .hero entirely — as a child it was clipped by .hero's own
+  // overflow:hidden (needed for the off-panel wire tails) and, once we tried disabling that
+  // clip on the y-axis, .hero silently became a scrollable box (the mixed overflow-x/y:visible
+  // quirk). Living outside .hero, nothing clips it vertically and it naturally paints in front
+  // of the next section (position:absolute content stacks above in-flow siblings) — position
+  // is kept in sync with .hero's own box via JS instead of CSS inset:0.
+  document.body.appendChild(field);
+  function positionField(){
+    var r=heroEl.getBoundingClientRect();
+    field.style.left=(r.left+window.scrollX)+'px';
+    field.style.top=(r.top+window.scrollY)+'px';
+    field.style.width=r.width+'px';
+    field.style.height=r.height+'px';
+  }
   function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
   function build(){
+    positionField();
     var fr=field.getBoundingClientRect();var w=fr.width,h=fr.height;if(w<10||h<10)return;
     var pr=vp.getBoundingClientRect();
     var pImg=document.getElementById('prod');var ir=pImg?pImg.getBoundingClientRect():pr;
@@ -59,8 +74,8 @@ f.addEventListener('submit',function(e){e.preventDefault();
     var leftSpan=devL-leftBound, rightSpan=rightBound-devL;
     var leftA=leftBound+leftSpan*0.25, rightA=leftBound+leftSpan*0.75; // left pair — under the copy column
     var leftB=devL+rightSpan*0.25, rightB=devL+rightSpan*0.75; // right pair — under the visible unit
-    var BR=27; // bubble radius — floorY must clear it, or .hero's overflow:hidden clips the bubble/emoji in half
-    var floorY=h-BR-6;
+    var BR=23; // bubble radius — field lives outside .hero now, so lowered bubbles are never clipped vertically
+    var floorY=h-BR-4;
     var rnd=mulberry32(0x5E17C0); // fixed seed, recreated on every build → identical wires across loads/resizes
 
     for(var i=0;i<N;i++){
@@ -70,7 +85,15 @@ f.addEventListener('submit',function(e){e.preventDefault();
       var fx=cx+(rnd()*70-35), fy=cy+(rnd()*30-8);
       // straight down to the line, then along it to the node — own lane per wire (tiny y-stagger)
       var laneY=floorY-i*3;
-      var d='M'+fx+','+fy+' L'+fx+','+laneY+' L'+bubbleX+','+laneY+' L'+bubbleX+','+floorY;
+      // outer two (school, alarm) sit 15px lower, laptop sits 8px lower, globe unchanged
+      var by=floorY+(i===0||i===N-1?15:i===1?8:0);
+      var d='M'+fx+','+fy+' L'+fx+','+laneY+' L'+bubbleX+','+laneY+' L'+bubbleX+','+by;
+      // outer two wires don't stop at their node — they drop the rest of the way to the
+      // hero's bottom border and keep going past the frame edge, reading as cables that
+      // continue off-panel rather than terminating mid-canvas (the ±200 overshoot ends up
+      // off-viewport in real page coordinates, so body's own overflow-x:hidden clips it)
+      if(i===0)d+=' L'+bubbleX+','+h+' L-200,'+h;
+      if(i===N-1)d+=' L'+bubbleX+','+h+' L'+(w+200)+','+h;
       var p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('fill','none');
       p.setAttribute('stroke','#121110');p.setAttribute('stroke-width',(5+rnd()*2).toFixed(1));
       p.setAttribute('stroke-linecap','round');p.setAttribute('stroke-linejoin','round');p.setAttribute('opacity','.9');svg.appendChild(p);
@@ -81,12 +104,13 @@ f.addEventListener('submit',function(e){e.preventDefault();
       // connector block AT the product end
       var r=document.createElementNS(NS,'rect');r.setAttribute('x',fx-7);r.setAttribute('y',fy-7);r.setAttribute('width',14);r.setAttribute('height',14);r.setAttribute('fill','#121110');svg.appendChild(r);
       // icon node — sits on the bottom border, fed from above by the drop-and-run trace (bigger so the icon actually reads)
-      var bub=document.createElementNS(NS,'circle');bub.setAttribute('cx',bubbleX);bub.setAttribute('cy',floorY);bub.setAttribute('r',BR);bub.setAttribute('fill','#121110');bub.setAttribute('stroke','#79CBA7');bub.setAttribute('stroke-width','2.8');svg.appendChild(bub);
-      var ic=document.createElementNS(NS,'text');ic.setAttribute('x',bubbleX);ic.setAttribute('y',floorY);ic.setAttribute('text-anchor','middle');ic.setAttribute('dominant-baseline','central');ic.setAttribute('font-size','23');ic.textContent=icons[i%icons.length];svg.appendChild(ic);
+      var bub=document.createElementNS(NS,'circle');bub.setAttribute('cx',bubbleX);bub.setAttribute('cy',by);bub.setAttribute('r',BR);bub.setAttribute('fill','#121110');bub.setAttribute('stroke','#79CBA7');bub.setAttribute('stroke-width','2.8');svg.appendChild(bub);
+      var ic=document.createElementNS(NS,'text');ic.setAttribute('x',bubbleX);ic.setAttribute('y',by);ic.setAttribute('text-anchor','middle');ic.setAttribute('dominant-baseline','central');ic.setAttribute('font-size','23');ic.textContent=icons[i%icons.length];svg.appendChild(ic);
     }
     field.innerHTML='';field.appendChild(svg);
   }
   window.addEventListener('load',build);
   var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(build,200);});
+  window.addEventListener('scroll',positionField,{passive:true});
 })();
 </script>

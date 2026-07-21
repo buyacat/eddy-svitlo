@@ -53,6 +53,7 @@ export const nav = {
   links: [
     { label: 'Моделі', href: '#plans' },
     { label: 'Eddy Trade', href: 'http://trade.eddygroup.eu/', external: true },
+    { label: '1-Vision', href: 'https://1vision.eddygroup.eu/', external: true },
     { label: 'Dr. STEM', href: 'https://drstem.eu/', external: true },
     { label: 'Новини', href: 'https://eddygroup.eu/news/', external: true },
     { label: 'Контакти', href: 'https://eddygroup.eu/contact/', external: true },
@@ -70,7 +71,6 @@ export const hero = {
   ],
   productImage: { src: '/img/inverter-cut.png', alt: 'Гібридний трифазний інвертор', width: 1694, height: 1694 },
   plugLabels: { left: 'AC / GRID', right: 'PV + АКБ' },
-  sunBadgeTitle: 'Заряджається від сонця',
   stats: [
     { value: '24 / 7', label: 'Живлення під час відключень' },
     { value: 'LiFePO₄', label: 'Безпечні акумулятори, довгий ресурс' },
@@ -101,11 +101,6 @@ export const how = {
     { code: '04 / LOAD', title: 'Споживачі', text: 'Використовують освітлення, техніка, мережа, безпека — без перерв.' },
   ],
   flowNote: 'Сонячні панелі (опція) — заряджають АКБ і живлять споживачів удень',
-  paragraphs: [
-    'Під час наявності електроенергії система живить споживачів та заряджає акумулятори.',
-    'У разі відключення інвертор автоматично переходить на живлення від акумуляторів — без втручання персоналу.',
-    'За наявності сонячних панелей система використовує сонячну енергію для заряджання АКБ та живлення споживачів.',
-  ],
 };
 
 export const plans = {
@@ -118,7 +113,7 @@ export const plans = {
       unit: 'кВт інвертор / АКБ',
       badge: null,
       hot: false,
-      desc: 'Невеликі школи, садки, адмінприміщення',
+      desc: 'Невеликі школи, садки, адміністративні приміщення',
       features: ['Трифазний інвертор', 'LiFePO₄ АКБ', 'Масштабування'],
     },
     {
@@ -191,14 +186,18 @@ export const footer = {
     { label: 'Комплектації', href: '#plans' },
     { label: 'Контакти', href: '#contact' },
   ],
-  contactTitle: 'Контакти',
-  phone: { label: '+380 93 270 82 04', href: 'tel:+380932708204' },
-  email: { label: 'office@eddygroup.eu', href: 'mailto:office@eddygroup.eu' },
-  address: 'Київ, вул. Глибочицька, 32',
+  officeTitle: 'Офіс',
+  officePhone: { label: '+38 (044) 299 5 299', href: 'tel:+380442995299' },
+  officeEmail: { label: 'office@eddygroup.eu', href: 'mailto:office@eddygroup.eu' },
+  officeAddress: 'Київ, вул. Глибочицька, 32',
+  serviceTitle: 'Сервісна підтримка',
+  serviceHours: 'Пн-Пт: 09:00-18:00',
+  servicePhone: { label: '+380 93 270 82 04', href: 'tel:+380932708204' },
+  serviceEmail: { label: 'service@eddygroup.eu', href: 'mailto:service@eddygroup.eu' },
+  warranty: { label: 'Гарантійні умови', href: 'https://eddygroup.eu/wp-content/uploads/2026/03/garantijni-umovy.docx' },
   copyright: '© 2026 EDDY GROUP · SVITLO',
   social: [
     { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61576618363606', icon: 'facebook' },
     { label: 'YouTube', href: 'https://www.youtube.com/@eddy-group', icon: 'youtube' },
   ],
-  madeIn: 'Зроблено в Україні',
 };
