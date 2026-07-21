@@ -1,9 +1,11 @@
 ---
 import { nav } from '../data/site.ts';
+
+const base = import.meta.env.BASE_URL;
 ---
 <nav>
   <div class="wrap nav-in">
-    <img class="logo" src="img/eddy-ink.svg" alt="EDDY Group" width="910" height="150" />
+    <a href="http://eddygroup.eu/" target="_blank" rel="noreferrer"><img class="logo" src={`${base}img/eddy-ink.svg`} alt="EDDY Group" width="910" height="150" /></a>
     <div class="links">
       {nav.links.map((l) => (
         <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noreferrer' : undefined}>{l.label}</a>

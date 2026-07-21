@@ -112,5 +112,9 @@ f.addEventListener('submit',function(e){e.preventDefault();
   window.addEventListener('load',build);
   var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(build,200);});
   window.addEventListener('scroll',positionField,{passive:true});
+  // nav's scrolled/unscrolled padding change (.35s transition) shifts .hero's position
+  // after the user has stopped scrolling, when no further 'scroll' event fires to
+  // re-sync — catch that settle by repositioning once the transition actually finishes
+  document.addEventListener('transitionend',positionField,{passive:true});
 })();
 </script>

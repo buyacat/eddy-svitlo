@@ -71,7 +71,7 @@ body.open .drawer{pointer-events:auto;} body.open .drawer .sc{opacity:1;} body.o
   repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(18,17,16,.05) 12px,rgba(18,17,16,.05) 13px);}
 .hero-prod img{position:relative;z-index:2;width:100%;max-height:520px;object-fit:contain;filter:drop-shadow(0 24px 30px rgba(18,17,16,.28));transform:translateX(-110px);}
 .hero-prod .plug{position:absolute;z-index:3;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10.5px;background:var(--ink);color:var(--sig-lt);padding:4px 9px;}
-.hero-prod .plug.p1{top:24%;left:-10px;} .hero-prod .plug.p2{bottom:24%;right:-10px;}
+.hero-prod .plug.p1{bottom:11%;left:-10px;} .hero-prod .plug.p2{bottom:11%;right:42%;}
 
 /* hero trust list — overlay card on the unit photo, right side of the hero */
 .hero-stats{list-style:none;margin:0;padding:16px 18px 8px;position:absolute;z-index:3;left:20px;bottom:150px;width:230px;background:var(--ink);border:1.5px solid var(--sig-lt);}
@@ -120,7 +120,7 @@ body.open .drawer{pointer-events:auto;} body.open .drawer .sc{opacity:1;} body.o
 .plan.hot .pimg{background:repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(255,255,255,.1) 12px,rgba(255,255,255,.1) 13px),var(--lime);}
 .plan .pimg img{position:relative;z-index:3;width:auto;object-fit:contain;transform:translateX(56px);}
 .plan .pimg img.s1{max-height:270px;transform:translateX(56px) translateY(13px);}
-.plan .pimg img.s2{max-height:250px;transform:translateX(56px) translateY(15px);}
+.plan .pimg img.s2{max-height:290px;transform:translateX(56px) translateY(15px);}
 .plan .pimg img.s3{max-height:270px;transform:translateX(56px) translateY(0);}
 .plan .povl{position:absolute;top:16px;left:20px;right:20px;z-index:2;pointer-events:none;}
 .plan .pw{font-family:'Oswald',sans-serif;font-weight:700;font-size:60px;line-height:.85;}

@@ -1,6 +1,10 @@
 // Весь текстовий контент і SEO-налаштування сайту зібрані тут.
 // Щоб змінити текст на сторінці — редагуйте значення нижче, розмітку чіпати не треба.
 
+// base-aware prefix for static assets in public/ — always absolute, so it works
+// regardless of whether the current URL has a trailing slash (unlike bare relative paths)
+const BASE = import.meta.env.BASE_URL;
+
 export const seo = {
   title: 'Svitlo · EDDY Group — Резервне живлення для закладів освіти',
   description:
@@ -66,13 +70,13 @@ export const hero = {
   titleHtml: 'Школа <span class="hl">працює</span><br>попри графік<br>відключень',
   lede: 'Комплексні рішення резервного живлення «під ключ» для шкіл, ліцеїв і садків. Просто, безпечно й готово до зими.',
   buttons: [
-    { label: 'Отримати консультацію', href: '#contact', variant: 'b1' },
+    { label: 'Залишити заявку', href: '#contact', variant: 'b1' },
     { label: 'Підібрати рішення', href: '#plans', variant: 'b2' },
   ],
-  productImage: { src: 'img/inverter-cut.png', alt: 'Гібридний трифазний інвертор', width: 1694, height: 1694 },
+  productImage: { src: `${BASE}img/inverter-cut.png`, alt: 'Гібридний трифазний інвертор', width: 1694, height: 1694 },
   plugLabels: { left: 'AC / GRID', right: 'PV + АКБ' },
   stats: [
-    { value: '24 / 7', label: 'Живлення під час відключень' },
+    { value: '24 / 7', label: 'Система напоготові, вмикається миттєво' },
     { value: 'LiFePO₄', label: 'Безпечні акумулятори, довгий ресурс' },
     { value: 'Під ключ', label: 'Інвертор • АКБ • монтаж • сервіс' },
   ],
@@ -108,34 +112,34 @@ export const plans = {
   titleHtml: 'Оберіть рішення<br>під ваш заклад',
   items: [
     {
-      image: { src: 'img/kstar-inverter.png', alt: 'Настінний гібридний інвертор', width: 700, height: 700, class: 's1' },
+      image: { src: `${BASE}img/kstar-inverter.png`, alt: 'Настінний гібридний інвертор', width: 700, height: 700, class: 's1' },
       power: '12/20',
-      unit: 'кВт інвертор / АКБ',
+      unit: 'кВт інвертор / кВт·год АКБ',
       badge: null,
       hot: false,
       desc: 'Невеликі школи, садки, адміністративні приміщення',
       features: ['Трифазний інвертор', 'LiFePO₄ АКБ', 'Масштабування'],
     },
     {
-      image: { src: 'img/kstar-batteries.png', alt: 'LiFePO₄ акумуляторні вежі', width: 700, height: 700, class: 's2' },
+      image: { src: `${BASE}img/kstar-batteries.png`, alt: 'LiFePO₄ акумуляторні вежі', width: 700, height: 700, class: 's2' },
       power: '20/50',
-      unit: 'кВт інвертор / АКБ',
+      unit: 'кВт інвертор / кВт·год АКБ',
       badge: 'рекомендовано',
       hot: true,
       desc: 'Ліцеї, гімназії, середні заклади',
       features: ['Більша потужність', 'Вища продуктивність', 'Сонячні панелі'],
     },
     {
-      image: { src: 'img/kstar-cabinet.png', alt: 'Промислова система резервного живлення', width: 1000, height: 1000, class: 's3' },
+      image: { src: `${BASE}img/kstar-cabinet.png`, alt: 'Промислова система резервного живлення', width: 1000, height: 1000, class: 's3' },
       power: '50/100',
-      unit: 'кВт інвертор / АКБ',
+      unit: 'кВт інвертор / кВт·год АКБ',
       badge: null,
       hot: false,
       desc: 'Великі ліцеї, ПТУ, комплекси',
       features: ['Макс. потужність', 'Масштабованість', 'Велике навантаження'],
     },
   ],
-  buttonLabel: 'Дізнатись ціну',
+  buttonLabel: 'Залишити заявку',
 };
 
 export const why = {
