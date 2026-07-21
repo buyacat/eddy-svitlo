@@ -129,6 +129,7 @@ body.open .drawer{pointer-events:auto;} body.open .drawer .sc{opacity:1;} body.o
 .plan .desc{font-weight:600;font-size:15px;line-height:1.4;min-height:44px;margin-bottom:18px;}
 .plan ul{list-style:none;padding:0;margin:0 0 24px;}
 .plan li{font-family:'JetBrains Mono',monospace;font-size:13px;padding:8px 0;border-top:1px dashed rgba(18,17,16,.35);}
+.plan li .fhl{background:var(--lime);color:var(--bone);font-weight:700;padding:.15em .4em;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
 .plan .pbtn{display:block;text-align:center;font-family:'Sora',sans-serif;font-weight:800;text-transform:uppercase;font-size:14px;background:var(--ink);color:var(--bone);padding:16px;}
 .plan .pbtn:hover{background:var(--lime);}
 

@@ -19,7 +19,9 @@ import { plans } from '../data/site.ts';
             <img class={p.image.class} src={p.image.src} alt={p.image.alt} width={p.image.width} height={p.image.height} loading="lazy" decoding="async" />
           </div>
           <h3 class="desc">{p.desc}</h3>
-          <ul>{p.features.map((f) => <li>{f}</li>)}</ul>
+          <ul>{p.features.map((f) => (
+            typeof f === 'string' ? <li>{f}</li> : <li><span class="fhl">{f.text}</span></li>
+          ))}</ul>
           <a class="pbtn" href="#contact">{plans.buttonLabel}</a>
         </div>
       ))}
