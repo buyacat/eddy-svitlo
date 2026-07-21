@@ -145,7 +145,7 @@ export const plans = {
 export const why = {
   num: '04',
   titleHtml: 'Повний цикл, а не<br>просто постачання',
-  brandKicker: 'EDDY GROUP',
+  brandKicker: 'EDDY GROUP + MAST',
   brandText:
     'Не просто постачальник обладнання, а підрядник, який відповідає за результат — від розрахунку потужності до сервісу після монтажу.',
   cards: [
