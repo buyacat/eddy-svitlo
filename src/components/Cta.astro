@@ -8,7 +8,6 @@ import { cta } from '../data/site.ts';
       <h2>{cta.title}</h2>
       <p>{cta.text}</p>
     </div>
-    <!-- Web3Forms: встав робочий ключ у value нижче (30 сек на web3forms.com → email office@eddygroup.eu → ключ прийде на пошту). Поки стоїть плейсхолдер, форма показує повідомлення "не підключено". -->
     <form class="form" id="leadForm" action={cta.form.action} method="POST">
       <input type="hidden" name="access_key" value={cta.form.accessKey}>
       <input type="hidden" name="subject" value={cta.form.subject}>
