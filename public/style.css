@@ -23,7 +23,9 @@ nav.scrolled{
 .nav-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:20px;padding:22px 34px;margin:0 auto;
   transition:padding .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,background .35s ease;}
 nav.scrolled .nav-in{background:var(--ink);padding-top:15px;padding-bottom:15px;box-shadow:0 16px 34px -14px rgba(18,17,16,.55);}
-nav .logo{width:auto;height:34px;flex-shrink:0;filter:brightness(0) invert(1);transition:height .3s ease;}
+.logo-link{display:inline-flex;align-items:center;gap:12px;flex-shrink:0;white-space:nowrap;}
+.logo-sep{width:1px;height:32px;flex-shrink:0;background:#ece6da38;}
+nav .logo{display:block;width:auto;height:32px;flex-shrink:0;filter:brightness(0) invert(1);transition:height .3s ease;}
 nav.scrolled .logo{height:28px;}
 .links{display:flex;gap:0;flex-shrink:0;}
 .links a{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;padding:8px 16px;border-left:1px solid rgba(255,255,255,.16);color:var(--bone);white-space:nowrap;transition:.15s;}
