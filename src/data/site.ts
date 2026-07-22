@@ -161,10 +161,8 @@ export const cta = {
   title: 'Залиште заявку — і ми все порахуємо',
   text: 'Підберемо комплектацію під потужність і навантаження вашого закладу та узгодимо зручний час монтажу.',
   form: {
-    // Web3Forms: встав робочий ключ нижче (30 сек на web3forms.com → email office@eddygroup.eu → ключ прийде на пошту).
-    // Поки стоїть плейсхолдер, форма показує повідомлення "не підключено".
     action: 'https://api.web3forms.com/submit',
-    accessKey: 'REPLACE_WITH_WEB3FORMS_ACCESS_KEY',
+    accessKey: 'a47daedf-28cf-4bfc-ad2d-617067cd9fb2',
     subject: 'Заявка з лендінгу Svitlo',
     fromName: 'EDDY Svitlo',
     submitLabel: 'Надіслати заявку',
