@@ -15,13 +15,11 @@ export const seo = {
   themeColor: '#121110',
   locale: 'uk_UA',
   siteName: 'EDDY Group',
-  // TODO: замінити на окрему картинку 1200×630, коли буде готовий дизайн —
-  // поки що перевикористовується фото інвертора з хіро-блоку.
   ogImage: {
-    url: 'https://svitlo.eddygroup.eu/img/inverter-cut.png',
-    width: 1694,
-    height: 1694,
-    type: 'image/png',
+    url: 'https://svitlo.eddygroup.eu/img/og-svitlo-selection.jpg',
+    width: 1200,
+    height: 630,
+    type: 'image/jpeg',
   },
 };
 
